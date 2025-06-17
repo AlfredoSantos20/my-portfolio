@@ -81,6 +81,7 @@ const allProjects = [
 
 const Project = () => {
   const [filter, setFilter] = useState('all');
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const [sliderRef] = useKeenSlider({
     slides: {
@@ -122,31 +123,29 @@ const Project = () => {
         </p>
       </div>
 
-     
       <div className="flex justify-center flex-wrap gap-6 mb-10 text-sm sm:text-base">
-        {[
-          { key: 'all', label: 'All Projects' },
-          { key: 'web', label: 'Web Development' },
-          { key: 'mobile', label: 'Mobile Apps' },
-        ].map(({ key, label }) => (
-          <button
-            key={key}
-            onClick={() => setFilter(key)}
-            className={`relative font-semibold transition duration-300 ease-in-out cursor-pointer ${
-              filter === key
-                ? 'text-black after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-teal-500'
-                : 'text-gray-500 hover:text-teal-500'
-            }`}
-          >
-            {label}
-          </button>
-        ))}
+        {[{ key: 'all', label: 'All Projects' }, { key: 'web', label: 'Web' }, { key: 'mobile', label: 'Mobile' }].map(
+          ({ key, label }) => (
+            <button
+              key={key}
+              onClick={() => setFilter(key)}
+              className={`relative font-semibold transition duration-300 ease-in-out cursor-pointer ${
+                filter === key
+                  ? 'text-black after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-teal-500'
+                  : 'text-gray-500 hover:text-teal-500'
+              }`}
+            >
+              {label}
+            </button>
+          )
+        )}
       </div>
 
       <div key={filter} ref={sliderRef} className="keen-slider max-w-6xl mx-auto sm:px-4">
         {filteredProjects.map((project, idx) => (
           <div
             key={idx}
+            onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
             className="keen-slider__slide bg-white rounded-xl shadow-md w-[300px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-lg transition-transform duration-500 ease-in-out cursor-pointer"
           >
             <div className="relative overflow-hidden h-48 rounded-t-xl">
@@ -155,7 +154,14 @@ const Project = () => {
                 alt={project.title}
                 className="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
-              <span className="absolute bottom-3 left-3 bg-[rgba(13,148,136,0.2)] text-teal-400 text-xs font-semibold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+              <span
+                className={`absolute bottom-3 left-3 bg-[rgba(13,148,136,0.2)] text-teal-400 text-xs font-semibold px-3 py-1 rounded-full z-10 transition-opacity duration-300
+                ${
+                  selectedCard === idx
+                    ? 'block sm:hidden'
+                    : 'hidden sm:group-hover:inline'
+                }`}
+              >
                 {project.type}
               </span>
               {project.link && (
@@ -163,8 +169,13 @@ const Project = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute bottom-3 right-3 bg-teal-600 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 hover:bg-teal-700 transition duration-300 z-10"
                   title="Open project"
+                  className={`absolute bottom-3 right-3 bg-teal-600 text-white rounded-full p-1 z-10 transition duration-300
+                    ${
+                      selectedCard === idx
+                        ? 'block sm:hidden'
+                        : 'hidden sm:group-hover:flex'
+                    }`}
                 >
                   <FaArrowUpRightFromSquare className="h-4 w-4" />
                 </a>
