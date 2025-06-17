@@ -1,0 +1,9 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import Front from './pages/Front.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Front/>
+  </StrictMode>,
+)
