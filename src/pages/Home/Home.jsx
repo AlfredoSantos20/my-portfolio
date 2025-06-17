@@ -19,10 +19,11 @@ const Home = () => {
   };
 
   return (
-    <div className="max-w-7xl w-full px-4 sm:px-6 md:px-10 flex flex-col md:flex-row items-center gap-10">
-      {/* LEFT SIDE */}
-      <div className="flex-1 text-left">
-        <p className="text-lg sm:text-xl font-semibold text-teal-500">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col-reverse md:flex-row items-center justify-center gap-10">
+      
+      
+      <div className="flex-1 text-center md:text-left">
+        <p className="text-lg sm:text-xl font-semibold text-teal-500 mb-2">
           <Typewriter
             words={["Hey, I'm Alfredo B. Santos Jr."]}
             loop={0}
@@ -34,15 +35,15 @@ const Home = () => {
           />
         </p>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mt-2 hover:text-teal-500 transition-colors duration-300">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 hover:text-teal-500 transition-colors duration-300">
           Back-end Developer
         </h1>
 
-        <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-700 max-w-xl">
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg text-gray-700 max-w-xl mx-auto md:mx-0">
           Let's transform your ideas into a powerful digital reality. I specialize in building scalable, efficient systems that bring innovation to life and meet real-world needs.
         </p>
 
-        <div className="mt-6 flex flex-col xs:flex-row sm:flex-row gap-4 w-full max-w-xs sm:max-w-none">
+        <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start w-full sm:w-auto">
           <Button
             href="#projects"
             text="View My Work"
@@ -59,16 +60,15 @@ const Home = () => {
             className="w-full sm:w-auto"
           />
         </div>
-
       </div>
 
-      {/* RIGHT SIDE */}
+   
       <div className="flex-1 flex justify-center">
-        <div className="bg-teal-500 p-3 sm:p-4 rounded-3xl shadow-lg group cursor-pointer max-w-[300px] sm:max-w-[350px] md:max-w-[400px] w-full">
+        <div className="bg-teal-500 p-3 sm:p-4 rounded-3xl shadow-xl group max-w-[280px] sm:max-w-[340px] md:max-w-[400px] w-full">
           <img
             src="/assets/images/me2.jpg"
             alt="Alfredo"
-            className="rounded-3xl w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-110 group-active:scale-125"
+            className="rounded-3xl w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105"
           />
         </div>
       </div>

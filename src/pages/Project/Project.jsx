@@ -113,7 +113,7 @@ const Project = () => {
       : allProjects.filter((project) => project.type === filter);
 
   return (
-    <section className="py-16 px-6 bg-blue-50">
+    <section className="py-10 px-6 bg-blue-50">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold hover:text-teal-500 transition-colors duration-300">
           My Projects
