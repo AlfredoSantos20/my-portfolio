@@ -12,7 +12,7 @@ const Contact = () => {
   return (
     <section id="contact" className="bg-blue-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl hover:text-teal-500 font-bold text-center text-gray-900 mb-2">
+        <h2 className="text-3xl sm:text-4xl hover:text-cyan-500 font-bold text-center text-gray-900 mb-2">
           Get In Touch
         </h2>
         <p className="text-center text-gray-600 mb-10 text-sm sm:text-base max-w-2xl mx-auto">
@@ -22,7 +22,6 @@ const Contact = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column */}
           <div className="space-y-5 text-sm">
-            {/* Contact Info */}
             {[
               {
                 icon: <FaEnvelope size={16} />,
@@ -41,7 +40,7 @@ const Contact = () => {
               },
             ].map((item, idx) => (
               <div key={idx} className="flex items-start space-x-3">
-                <div className="bg-teal-100 text-teal-700 p-2 rounded-lg">{item.icon}</div>
+                <div className="bg-cyan-100 text-cyan-700 p-2 rounded-lg">{item.icon}</div>
                 <div>
                   <h4 className="font-semibold text-gray-800">{item.label}</h4>
                   <p className="text-gray-700 text-xs sm:text-sm">{item.value}</p>
@@ -49,9 +48,8 @@ const Contact = () => {
               </div>
             ))}
 
-            {/* Let's Connect Box */}
             <div className="mt-6 bg-white rounded-xl shadow-md p-4">
-              <div className="flex items-center mb-2 text-teal-600">
+              <div className="flex items-center mb-2 text-cyan-600">
                 <FaEnvelope className="mr-2" />
                 <span className="font-semibold text-base">Let's connect</span>
               </div>
@@ -63,7 +61,7 @@ const Contact = () => {
                   href="https://www.linkedin.com/in/alfredo-santos-jr-511921242"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-teal-600 hover:bg-teal-700 text-white px-3 py-1.5 text-xs rounded-md font-medium flex items-center"
+                  className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white px-3 py-1.5 text-xs rounded-md font-medium flex items-center"
                 >
                   <FaLinkedin className="mr-1" />
                   LinkedIn
@@ -72,7 +70,7 @@ const Contact = () => {
                   href="https://github.com/AlfredoSantos20?tab=repositories"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white px-3 py-1.5 text-xs rounded-md font-medium flex items-center"
+                  className="border border-cyan-600 text-cyan-600 hover:bg-cyan-600 hover:text-white px-3 py-1.5 text-xs rounded-md font-medium flex items-center"
                 >
                   <FaGithub className="mr-1" />
                   GitHub
@@ -111,7 +109,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full mt-3 bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-md font-medium flex justify-center items-center gap-2 text-sm"
+                className="w-full mt-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-white py-2 rounded-md font-medium flex justify-center items-center gap-2 text-sm"
               >
                 <FaPaperPlane />
                 Send Message

@@ -8,12 +8,13 @@ const Button = ({
   variant = 'solid',
   onClick,
   disabled = false,
-  className = '', // New prop
+  className = '',
 }) => {
   const baseStyle =
     'px-6 py-3 text-sm sm:text-base rounded-md font-semibold transition inline-flex items-center justify-center gap-2';
-  const solidStyle = 'bg-teal-600 text-white shadow hover:bg-teal-700';
-  const outlineStyle = 'border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white';
+  const solidStyle = 'text-white shadow'; // removed hardcoded bg
+  const outlineStyle =
+    'border border-cyan-400 text-cyan-400 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white';
   const disabledStyle = 'opacity-50 cursor-not-allowed';
 
   const combinedStyle = `${baseStyle} ${

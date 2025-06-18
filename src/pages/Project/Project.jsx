@@ -115,7 +115,7 @@ const Project = () => {
   return (
     <section className="py-10 px-6 bg-blue-50">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold hover:text-teal-500 transition-colors duration-300">
+        <h2 className="text-4xl font-bold hover:text-cyan-400 transition-colors duration-300">
           My Projects
         </h2>
         <p className="text-black mt-2">
@@ -131,8 +131,8 @@ const Project = () => {
               onClick={() => setFilter(key)}
               className={`relative font-semibold transition duration-300 ease-in-out cursor-pointer ${
                 filter === key
-                  ? 'text-black after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-teal-500'
-                  : 'text-gray-500 hover:text-teal-500'
+                  ? 'text-cyan-500 after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-cyan-500'
+                  : 'text-gray-500 hover:text-cyan-300'
               }`}
             >
               {label}
@@ -155,7 +155,7 @@ const Project = () => {
                 className="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
               />
               <span
-                className={`absolute bottom-3 left-3 bg-[rgba(13,148,136,0.2)] text-teal-400 text-xs font-semibold px-3 py-1 rounded-full z-10 transition-opacity duration-300
+                className={`absolute bottom-3 left-3 bg-[rgba(34,211,238,0.2)] text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full z-10 transition-opacity duration-300
                 ${
                   selectedCard === idx
                     ? 'block sm:hidden'
@@ -170,7 +170,7 @@ const Project = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Open project"
-                  className={`absolute bottom-3 right-3 bg-teal-600 text-white rounded-full p-1 z-10 transition duration-300
+                  className={`absolute bottom-3 right-3 bg-cyan-500 text-white rounded-full p-1 z-10 transition duration-300
                     ${
                       selectedCard === idx
                         ? 'block sm:hidden'

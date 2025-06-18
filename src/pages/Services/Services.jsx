@@ -53,7 +53,7 @@ const techStack = [
     name: 'Android Studio',
     icon: (
       <img
-        src="../../../public/assets/images/as.png"
+        src="/assets/images/as.png"
         alt="Android Studio"
         className="w-10 h-10 object-contain"
       />
@@ -64,25 +64,26 @@ const techStack = [
 
 const Services = () => {
   return (
-    <section id="services" className="bg-blue-50 py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-gray-900 hover:text-teal-500 transition-colors">
-          My Tech Stack
-        </h2>
+ <section id="services" className="bg-blue-50 py-20 px-4 sm:px-6 lg:px-8">
+  <div className="max-w-7xl mx-auto text-center">
+    <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-gray-900 hover:text-cyan-500 transition-colors">
+      My Tech Stack
+    </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {techStack.map((tech, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center hover:shadow-lg transition-transform duration-300 transform hover:scale-105"
-            >
-              <div className="mb-3">{tech.icon}</div>
-              <p className="text-sm font-semibold text-gray-800 text-center">{tech.name}</p>
-            </div>
-          ))}
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      {techStack.map((tech, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center justify-center hover:shadow-lg transition-transform duration-300 transform hover:scale-105"
+        >
+          <div className="mb-3">{tech.icon}</div>
+          <p className="text-sm font-semibold text-gray-800 text-center">{tech.name}</p>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
+  </div>
+</section>
+
   );
 };
 

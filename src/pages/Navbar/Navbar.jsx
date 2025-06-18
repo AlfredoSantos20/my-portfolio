@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { FaHome, FaProjectDiagram, FaServicestack, FaEnvelope } from 'react-icons/fa';
+import {
+  FaHome,
+  FaProjectDiagram,
+  FaServicestack,
+  FaEnvelope,
+} from 'react-icons/fa';
 
 const Navbar = () => {
   const [scrollWidth, setScrollWidth] = useState(0);
@@ -8,7 +13,9 @@ const Navbar = () => {
   useEffect(() => {
     const updateProgress = () => {
       const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const docHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
       const scrolled = (scrollTop / docHeight) * 100;
       setScrollWidth(scrolled);
     };
@@ -38,48 +45,74 @@ const Navbar = () => {
 
   const linkClass = (id) =>
     `font-bold transition ${
-      activeSection === id ? 'text-teal-600' : 'text-gray-600 hover:text-teal-500'
+      activeSection === id
+        ? 'text-cyan-500'
+        : 'text-gray-600 hover:text-cyan-400'
     }`;
 
   const mobileLinkClass = (id) =>
-    `flex flex-col items-center text-xs transition ${
-      activeSection === id ? 'text-teal-600' : 'text-gray-700 hover:text-teal-500'
+    `flex flex-col items-center justify-center text-[11px] font-medium gap-1 px-4 py-2 rounded-xl transition duration-300 ${
+      activeSection === id
+        ? 'bg-cyan-100 text-cyan-500 shadow-sm'
+        : 'text-gray-600 hover:text-cyan-400'
     }`;
 
   return (
     <>
-      {/* Top Nav */}
       <nav className="fixed top-0 left-0 w-full bg-blue-50/30 backdrop-blur-md shadow-md z-50">
         <div
-          className="h-1 bg-teal-500 transition-all duration-75"
+          className="h-1 bg-cyan-400 transition-all duration-75"
           style={{ width: `${scrollWidth}%` }}
         ></div>
 
         <div className="container mx-auto hidden md:flex justify-center items-center px-4 py-6">
           <div className="space-x-6">
-            <a href="#home" className={linkClass('home')}>Home</a>
-            <a href="#projects" className={linkClass('projects')}>Projects</a>
-            <a href="#services" className={linkClass('services')}>Services</a>
-            <a href="#contact" className={linkClass('contact')}>Contact Me</a>
+            <a href="#home" className={linkClass('home')}>
+              Home
+            </a>
+            <a href="#projects" className={linkClass('projects')}>
+              Projects
+            </a>
+            <a href="#services" className={linkClass('services')}>
+              Services
+            </a>
+            <a href="#contact" className={linkClass('contact')}>
+              Contact Me
+            </a>
           </div>
         </div>
       </nav>
 
-      {/* Bottom Mobile Nav */}
-      <div className="fixed bottom-0 w-full bg-white shadow-inner flex justify-around items-center py-3 border-t border-gray-200 md:hidden z-50">
-        <a href="#home" className={mobileLinkClass('home')}>
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-white shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50">
+        <a
+          href="#home"
+          onClick={() => setActiveSection('home')}
+          className={mobileLinkClass('home')}
+        >
           <FaHome size={20} />
           Home
         </a>
-        <a href="#projects" className={mobileLinkClass('projects')}>
+        <a
+          href="#projects"
+          onClick={() => setActiveSection('projects')}
+          className={mobileLinkClass('projects')}
+        >
           <FaProjectDiagram size={20} />
           Projects
         </a>
-        <a href="#services" className={mobileLinkClass('services')}>
+        <a
+          href="#services"
+          onClick={() => setActiveSection('services')}
+          className={mobileLinkClass('services')}
+        >
           <FaServicestack size={20} />
           Services
         </a>
-        <a href="#contact" className={mobileLinkClass('contact')}>
+        <a
+          href="#contact"
+          onClick={() => setActiveSection('contact')}
+          className={mobileLinkClass('contact')}
+        >
           <FaEnvelope size={20} />
           Contact
         </a>

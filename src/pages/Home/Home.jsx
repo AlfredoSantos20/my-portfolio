@@ -20,10 +20,8 @@ const Home = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col-reverse md:flex-row items-center justify-center gap-10">
-      
-      
       <div className="flex-1 text-center md:text-left">
-        <p className="text-lg sm:text-xl font-semibold text-teal-500 mb-2">
+        <p className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2">
           <Typewriter
             words={["Hey, I'm Alfredo B. Santos Jr."]}
             loop={0}
@@ -35,7 +33,7 @@ const Home = () => {
           />
         </p>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 hover:text-teal-500 transition-colors duration-300">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 hover:bg-gradient-to-r from-cyan-400 to-blue-500 hover:bg-clip-text hover:text-transparent transition-colors duration-300">
           Back-end Developer
         </h1>
 
@@ -48,7 +46,7 @@ const Home = () => {
             href="#projects"
             text="View My Work"
             variant="solid"
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto bg-gradient-to-r from-cyan-400 to-blue-500 text-white"
           />
           <Button
             href="#"
@@ -62,9 +60,8 @@ const Home = () => {
         </div>
       </div>
 
-   
       <div className="flex-1 flex justify-center">
-        <div className="bg-teal-500 p-3 sm:p-4 rounded-3xl shadow-xl group max-w-[280px] sm:max-w-[340px] md:max-w-[400px] w-full">
+        <div className="bg-gradient-to-r from-cyan-400 to-blue-500 p-3 sm:p-4 rounded-3xl shadow-xl group max-w-[280px] sm:max-w-[340px] md:max-w-[400px] w-full">
           <img
             src="/assets/images/me2.jpg"
             alt="Alfredo"
