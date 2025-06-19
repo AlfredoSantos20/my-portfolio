@@ -64,7 +64,7 @@ const techStack = [
 
 const Services = () => {
   return (
- <section id="services" className="bg-blue-50 py-20 px-4 sm:px-6 lg:px-8">
+ <section id="services" className="bg-blue-50 bg-grid-light py-20 px-4 sm:px-6 lg:px-8">
   <div className="max-w-7xl mx-auto text-center">
     <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-gray-900 hover:text-cyan-500 transition-colors">
       My Tech Stack
