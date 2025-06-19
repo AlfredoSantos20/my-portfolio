@@ -87,9 +87,9 @@ const Navbar = () => {
             : 'none',
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/30 backdrop-blur-md"
+        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/30 backdrop-blur-md w-full max-w-[850px]"
       >
-        <div className="flex items-center justify-between w-[90%] mx-auto gap-6">
+       <div className="flex flex-wrap items-center justify-between w-full px-4 sm:px-6 gap-4 sm:gap-6 max-w-[850px] mx-auto">
           <div className="flex-shrink-0">
             <img
               src="/assets/images/mylogs.png"
@@ -98,7 +98,7 @@ const Navbar = () => {
             />
           </div>
 
-          <div className="space-x-6 text-center">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
             <a href="#home" className={linkClass('home')}>
               Home
             </a>
@@ -113,7 +113,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="flex items-center space-x-4 text-gray-600">
+          <div className="flex items-center gap-3 text-gray-600 flex-wrap justify-center">
             <a
               href={githubURL}
               target="_blank"
@@ -130,7 +130,12 @@ const Navbar = () => {
             >
               <FaFacebookF size={18} />
             </a>
-            <a href={instagramURL} target="_blank" rel="noopener noreferrer">
+            <a
+              href={instagramURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-500"
+            >
               <FaInstagram size={20} />
             </a>
             <a
