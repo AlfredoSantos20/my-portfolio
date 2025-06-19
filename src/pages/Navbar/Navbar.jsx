@@ -9,6 +9,7 @@ import {
   FaGithub,
   FaInstagram,
 } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [scrollWidth, setScrollWidth] = useState(0);
@@ -21,8 +22,7 @@ const Navbar = () => {
       setScrolled(scrollTop > 100);
 
       const docHeight =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
+        document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrolledPercent = (scrollTop / docHeight) * 100;
       setScrollWidth(scrolledPercent);
     };
@@ -62,10 +62,10 @@ const Navbar = () => {
         : 'text-gray-600 hover:text-cyan-400'
     }`;
 
-    const githubURL = import.meta.env.VITE_GITHUB_URL;
-    const facebookURL = import.meta.env.VITE_FACEBOOK_URL;
-    const instagramURL = import.meta.env.VITE_INSTAGRAM_URL;
-    const linkedinURL = import.meta.env.VITE_LINKEDIN_URL;
+  const githubURL = import.meta.env.VITE_GITHUB_URL;
+  const facebookURL = import.meta.env.VITE_FACEBOOK_URL;
+  const instagramURL = import.meta.env.VITE_INSTAGRAM_URL;
+  const linkedinURL = import.meta.env.VITE_LINKEDIN_URL;
 
   return (
     <>
@@ -76,22 +76,28 @@ const Navbar = () => {
       />
 
       {/* Desktop Navbar */}
-      <div data-aos="fade-down"
-        className={`hidden md:flex fixed ${scrolled ? 'top-4' : 'top-0'} left-1/2 transform -translate-x-1/2 z-50 items-center justify-center transition-all duration-300 
-        px-8 py-4 ${scrolled ? 'w-[65%] rounded-full shadow-xl' : 'w-full rounded-none'} 
-        bg-blue-50/30 backdrop-blur-md`}
+      <motion.div
+        data-aos="fade-down"
+        animate={{
+          y: scrolled ? 16 : 0,
+          width: scrolled ? '65%' : '100%',
+          borderRadius: scrolled ? '9999px' : '0px',
+          boxShadow: scrolled
+            ? '0 10px 30px rgba(0,0,0,0.1)'
+            : 'none',
+        }}
+        transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/30 backdrop-blur-md"
       >
-        <div className="flex items-center justify-between w-[90%] mx-auto gap-6l">
-        
+        <div className="flex items-center justify-between w-[90%] mx-auto gap-6">
           <div className="flex-shrink-0">
             <img
-              src="/assets/images/mylogs.png" 
+              src="/assets/images/mylogs.png"
               alt="Logo"
               className="w-10 h-10 rounded-full object-cover"
             />
           </div>
 
-      
           <div className="space-x-6 text-center">
             <a href="#home" className={linkClass('home')}>
               Home
@@ -124,7 +130,7 @@ const Navbar = () => {
             >
               <FaFacebookF size={18} />
             </a>
-             <a href={instagramURL} target="_blank" rel="noopener noreferrer"> 
+            <a href={instagramURL} target="_blank" rel="noopener noreferrer">
               <FaInstagram size={20} />
             </a>
             <a
@@ -137,10 +143,13 @@ const Navbar = () => {
             </a>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Navbar */}
-      <div data-aos="fade-down" className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-blue-50/30 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50">
+      <div
+        data-aos="fade-down"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-blue-50/30 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50"
+      >
         <a
           href="#home"
           onClick={() => setActiveSection('home')}
