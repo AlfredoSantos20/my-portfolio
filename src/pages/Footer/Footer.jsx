@@ -3,7 +3,7 @@ import { FaArrowUp, FaHeart } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="bg-white text-sm text-gray-700 py-10 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-blue-50 text-sm text-gray-700 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-col items-center text-center gap-6">
         <div>
           <h2 className="text-xl font-bold text-cyan-400">
@@ -27,10 +27,10 @@ const Footer = () => {
 
         <div>
           <p className="text-sm text-gray-600">
-            Made with <FaHeart className="inline text-red-500" /> in 2025
+              © 2025 Alfredo Santos. All rights reserved.
           </p>
           <p className="text-xs text-gray-500 mt-1">
-            © 2025 Alfredo Santos. All rights reserved.
+            Made with <FaHeart className="inline text-red-500" /> in 2025
           </p>
         </div>
       </div>

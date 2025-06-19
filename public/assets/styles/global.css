@@ -30,12 +30,29 @@ html, body {
 }
 
 .bg-grid-light {
-  background-color: #eff6ff; /* Tailwind's blue-50 */
+  background-color: #eff6ff; 
   background-image: 
     linear-gradient(0deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
+  background-position: top left; 
+  background-attachment: fixed; 
 }
 
+@keyframes ledRgbMotion {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-
+.led-rgb-bg {
+  background: linear-gradient(270deg, #00ffff, #00ff00, #ff00ff, #ff0000, #ffff00, #00ffff);
+  background-size: 400% 400%;
+  animation: ledRgbMotion 6s ease infinite;
+}

@@ -4,20 +4,27 @@ import {
   FaProjectDiagram,
   FaServicestack,
   FaEnvelope,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaGithub,
+  FaInstagram,
 } from 'react-icons/fa';
 
 const Navbar = () => {
   const [scrollWidth, setScrollWidth] = useState(0);
   const [activeSection, setActiveSection] = useState('');
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const updateProgress = () => {
+    const handleScroll = () => {
       const scrollTop = window.scrollY;
+      setScrolled(scrollTop > 100);
+
       const docHeight =
         document.documentElement.scrollHeight -
         document.documentElement.clientHeight;
-      const scrolled = (scrollTop / docHeight) * 100;
-      setScrollWidth(scrolled);
+      const scrolledPercent = (scrollTop / docHeight) * 100;
+      setScrollWidth(scrolledPercent);
     };
 
     const observer = new IntersectionObserver(
@@ -28,17 +35,15 @@ const Navbar = () => {
           }
         });
       },
-      {
-        threshold: 0.5,
-      }
+      { threshold: 0.5 }
     );
 
     const sections = document.querySelectorAll('section[id]');
     sections.forEach((section) => observer.observe(section));
 
-    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('scroll', handleScroll);
       sections.forEach((section) => observer.unobserve(section));
     };
   }, []);
@@ -57,16 +62,37 @@ const Navbar = () => {
         : 'text-gray-600 hover:text-cyan-400'
     }`;
 
+    const githubURL = import.meta.env.VITE_GITHUB_URL;
+    const facebookURL = import.meta.env.VITE_FACEBOOK_URL;
+    const instagramURL = import.meta.env.VITE_INSTAGRAM_URL;
+    const linkedinURL = import.meta.env.VITE_LINKEDIN_URL;
+
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-blue-50/30 backdrop-blur-md shadow-md z-50">
-        <div
-          className="h-1 bg-cyan-400 transition-all duration-75"
-          style={{ width: `${scrollWidth}%` }}
-        ></div>
+      {/* Progress bar */}
+      <div
+        className="fixed top-0 left-0 w-full h-1 bg-cyan-400 transition-all duration-75 z-[60]"
+        style={{ width: `${scrollWidth}%` }}
+      />
 
-        <div className="container mx-auto hidden md:flex justify-center items-center px-4 py-6">
-          <div className="space-x-6">
+      {/* Desktop Navbar */}
+      <div data-aos="fade-down"
+        className={`hidden md:flex fixed ${scrolled ? 'top-4' : 'top-0'} left-1/2 transform -translate-x-1/2 z-50 items-center justify-center transition-all duration-300 
+        px-8 py-4 ${scrolled ? 'w-[65%] rounded-full shadow-xl' : 'w-full rounded-none'} 
+        bg-blue-50/30 backdrop-blur-md`}
+      >
+        <div className="flex items-center justify-between w-[90%] mx-auto gap-6l">
+        
+          <div className="flex-shrink-0">
+            <img
+              src="/assets/images/mylogs.png" 
+              alt="Logo"
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          </div>
+
+      
+          <div className="space-x-6 text-center">
             <a href="#home" className={linkClass('home')}>
               Home
             </a>
@@ -80,10 +106,41 @@ const Navbar = () => {
               Contact Me
             </a>
           </div>
-        </div>
-      </nav>
 
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-white shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50">
+          <div className="flex items-center space-x-4 text-gray-600">
+            <a
+              href={githubURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-500"
+            >
+              <FaGithub size={18} />
+            </a>
+            <a
+              href={facebookURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-500"
+            >
+              <FaFacebookF size={18} />
+            </a>
+             <a href={instagramURL} target="_blank" rel="noopener noreferrer"> 
+              <FaInstagram size={20} />
+            </a>
+            <a
+              href={linkedinURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-cyan-500"
+            >
+              <FaLinkedinIn size={18} />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navbar */}
+      <div data-aos="fade-down" className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-blue-50/30 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50">
         <a
           href="#home"
           onClick={() => setActiveSection('home')}

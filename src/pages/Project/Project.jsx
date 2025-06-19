@@ -9,7 +9,7 @@ const allProjects = [
     title: 'Aurum Platform Web',
     description:
       'Swap your Quantum Metal Gold Tokens (QMGT) for USDT easily and securely, ensuring transparency, stability, and liquidity in your holdings with each transaction.',
-    tech: ['Strapi', 'Type Script'],
+    tech: ['Strapi', 'Type Script', 'Blockchain'],
     image: '/assets/images/aurumweb.png',
     type: 'web',
     link: 'https://aurumplatform.io/',
@@ -36,7 +36,7 @@ const allProjects = [
     title: 'Aurum Platform Mobile',
     description:
       'Easily and securely swap your Quantum Metal Gold Tokens (QMGT) for USDT — with every transaction ensuring transparency, stability, and liquidity in your assets.',
-    tech: ['Flutter', 'Riverpod'],
+    tech: ['Flutter', 'Riverpod', 'Blockchain'],
     image: '/assets/images/aurummob.jpg',
     type: 'mobile',
     link: 'https://play.google.com/store/search?q=aurum+platform&c=apps&hl=en',
@@ -98,7 +98,7 @@ const Project = () => {
       '(max-width: 640px)': {
         slides: {
           perView: 1,
-          spacing: 0,
+          spacing: 16,
         },
       },
     },
@@ -152,7 +152,9 @@ const Project = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="h-full w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+               className={`h-full w-full object-cover transform transition-transform duration-500 ${
+                selectedCard === idx ? 'scale-110' : 'group-hover:scale-105'
+              }`}
               />
               <span
                 className={`absolute bottom-3 left-3 bg-[rgba(34,211,238,0.2)] text-cyan-400 text-xs font-semibold px-3 py-1 rounded-full z-10 transition-opacity duration-300

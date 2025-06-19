@@ -21,7 +21,7 @@ const Contact = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column */}
-          <div className="space-y-5 text-sm">
+          <div data-aos="slide-right" className="space-y-5 text-sm">
             {[
               {
                 icon: <FaEnvelope size={16} />,
@@ -44,6 +44,21 @@ const Contact = () => {
                 <div>
                   <h4 className="font-semibold text-gray-800">{item.label}</h4>
                   <p className="text-gray-700 text-xs sm:text-sm">{item.value}</p>
+                  {/* Insert map after Location */}
+                  {item.label === 'Location' && (
+                    <div className="mt-4">
+                      <iframe
+                        title="My Location"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7721.011165276148!2d120.7660914!3d15.6602389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33972fef9a83952d%3A0x86b3b1a8c72c1cb1!2sLicab%2C%20Nueva%20Ecija!5e0!3m2!1sen!2sph!4v1718778788772!5m2!1sen!2sph"
+                        width="100%"
+                        height="220"
+                        className="rounded-lg border border-gray-200"
+                        allowFullScreen=""
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -79,8 +94,8 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Column - Contact Form */}
-          <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 text-sm">
+          {/* Right Column - Message Form */}
+          <div data-aos="slide-left" className="bg-white rounded-xl shadow-md p-4 sm:p-6 text-sm">
             <h3 className="text-base font-semibold mb-4 text-gray-800">Send a Message</h3>
             <form className="space-y-3">
               {[
