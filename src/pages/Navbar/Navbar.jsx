@@ -118,7 +118,7 @@ const Navbar = () => {
               href={githubURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500"
+              className="hover:text-cyan-500 cursor-pointer"
             >
               <FaGithub size={18} />
             </a>
@@ -126,7 +126,7 @@ const Navbar = () => {
               href={facebookURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500"
+              className="hover:text-cyan-500 cursor-pointer"
             >
               <FaFacebookF size={18} />
             </a>
@@ -134,7 +134,7 @@ const Navbar = () => {
               href={instagramURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500"
+              className="hover:text-cyan-500 cursor-pointer"
             >
               <FaInstagram size={20} />
             </a>
@@ -142,7 +142,7 @@ const Navbar = () => {
               href={linkedinURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500"
+              className="hover:text-cyan-500 cursor-pointer"
             >
               <FaLinkedinIn size={18} />
             </a>
