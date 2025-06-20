@@ -51,8 +51,8 @@ html, body {
   }
 }
 
-.led-rgb-bg {
+/* .led-rgb-bg {
   background: linear-gradient(270deg, #00ffff, #00ff00, #ff00ff, #ff0000, #ffff00, #00ffff);
   background-size: 400% 400%;
   animation: ledRgbMotion 6s ease infinite;
-}
+} */

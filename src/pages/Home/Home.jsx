@@ -60,7 +60,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex-1 flex justify-center">
+      {/* <div className="flex-1 flex justify-center">
         <div
           data-aos="slide-left"
           className="led-rgb-bg p-3 sm:p-4 rounded-3xl shadow-xl group max-w-[280px] sm:max-w-[340px] md:max-w-[400px] w-full"
@@ -71,7 +71,21 @@ const Home = () => {
             className="rounded-3xl w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105"
           />
         </div>
-      </div>
+      </div> */}
+
+      <div className="flex-1 flex justify-center">
+      <div
+        data-aos="slide-left"
+        className="bg-gradient-to-br from-cyan-400 to-blue-600 p-3 sm:p-4 rounded-3xl shadow-xl group max-w-[280px] sm:max-w-[340px] md:max-w-[400px] w-full"
+      >
+        <img
+          src="/assets/images/me2.jpg"
+          alt="Alfredo"
+          className="rounded-3xl w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105"
+        />
+  </div>
+</div>
+
 
     </div>
   );

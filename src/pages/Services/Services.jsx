@@ -63,33 +63,37 @@ const Services = ({ className }) => {
 
       <div className={cn("mx-auto block overflow-hidden rounded-2xl", className)}>
         <div className="flex w-full items-center justify-center">
-          <div className="max-w-[1300px] shrink-0 scale-90 sm:scale-100">
-            <div
-              style={{ transform: "rotateX(35deg) rotateY(0deg) rotateZ(-25deg)" }}
-              className="relative top-0 left-0 grid size-full origin-center grid-cols-4 gap-8 transform-3d"
-            >
+          <div className="max-w-[1300px] shrink-0">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               {chunks.map((column, colIndex) => (
-                <motion.div
-                  animate={{ y: colIndex % 2 === 0 ? 80 : -80 }}
-                  transition={{
-                    duration: colIndex % 2 === 0 ? 10 : 12,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  key={colIndex + "marquee"}
-                  className="flex flex-col items-center gap-8"
+                <div
+                  key={colIndex}
+                  className="relative h-[300px] sm:h-[350px] md:h-[400px] w-[70px] sm:w-[80px] md:w-[90px] overflow-hidden"
                 >
-                  {column.map((icon, iconIndex) => (
-                    <motion.div
-                      whileHover={{ y: -10 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      key={iconIndex}
-                      className="rounded-xl ring ring-gray-200 hover:ring-cyan-500 hover:shadow-xl transition-all bg-white w-[70px] h-[70px] flex items-center justify-center"
-                    >
-                      {icon}
-                    </motion.div>
-                  ))}
-                </motion.div>
+                  <motion.div
+                    animate={{ y: ["0%", "-50%"] }}
+                    transition={{
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                    }}
+                    className="flex flex-col gap-6 justify-center"
+                    style={{ willChange: "transform" }}
+                  >
+                    {[...column, ...column].map((icon, iconIndex) => (
+                      <div
+                        key={`${colIndex}-${iconIndex}`}
+                        className="p-[2px] sm:p-[3px] bg-white rounded-xl w-[60px] sm:w-[70px] h-[60px] sm:h-[70px] flex items-center justify-center shadow-inner overflow-hidden"
+                      >
+                        <motion.div
+                          className="w-full h-full rounded-xl ring ring-gray-200 hover:ring-cyan-500 hover:shadow-xl transition-all flex items-center justify-center"
+                        >
+                          {icon}
+                        </motion.div>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
               ))}
             </div>
           </div>
