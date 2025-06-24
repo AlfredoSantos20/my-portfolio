@@ -11,6 +11,11 @@ html, body {
    scroll-behavior: smooth;
 }
 
+
+.container { 
+  position: relative;
+  overflow-x: hidden;
+}
 /* * {
   outline: 1px solid red;
 } */
