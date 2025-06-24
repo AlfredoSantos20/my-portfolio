@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/Button.jsx';
 import { FaDownload } from 'react-icons/fa6';
 import { Typewriter } from 'react-simple-typewriter';
 
 const Home = () => {
   const [hasDownloaded, setHasDownloaded] = useState(false);
- const [showButtonAOS, setShowButtonAOS] = useState(true);
 
-  useEffect(() => {
-    if (window.innerWidth < 640) {
-      setShowButtonAOS(false); // disable AOS on mobile for buttons
-    }
-  }, []);
   const handleDownload = () => {
     if (!hasDownloaded) {
       const link = document.createElement('a');
@@ -47,7 +41,7 @@ const Home = () => {
           Let's transform your ideas into a powerful digital reality. I specialize in building scalable, efficient systems that bring innovation to life and meet real-world needs.
         </p>
 
-        <div  {...(showButtonAOS && { 'data-aos': 'slide-right' })} className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start w-full sm:w-auto">
+        <div data-aos="slide-right" className="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start w-full sm:w-auto">
           <Button
             href="#projects"
             text="View My Work"
