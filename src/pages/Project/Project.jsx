@@ -14,15 +14,15 @@ const allProjects = [
     type: 'web',
     link: 'https://aurumplatform.io/',
   },
-  {
-    title: 'Crypto P2P',
-    description:
-      'CryptoP2P.ph is the next-generation platform for fast, secure, and borderless peer-to-peer crypto transactions in the Philippines.',
-    tech: ['React js', 'Nest js', 'Swagger'],
-    image: '/assets/images/p2pImg2.png',
-    type: 'web',
-    link: 'https://www.cryptop2p.ph/',
-  },
+  // {
+  //   title: 'Crypto P2P',
+  //   description:
+  //     'CryptoP2P.ph is the next-generation platform for fast, secure, and borderless peer-to-peer crypto transactions in the Philippines.',
+  //   tech: ['React js', 'Nest js', 'Swagger'],
+  //   image: '/assets/images/p2pImg2.png',
+  //   type: 'web',
+  //   link: 'https://www.cryptop2p.ph/',
+  // },
   {
     title: 'Tourista App',
     description:
