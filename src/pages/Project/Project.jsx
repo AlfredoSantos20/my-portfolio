@@ -42,6 +42,15 @@ const allProjects = [
     link: 'https://play.google.com/store/search?q=aurum+platform&c=apps&hl=en',
   },
   {
+  title: 'LiveHoops',
+  description:
+    'LiveHoops is an AI-powered basketball analytics web application with a real-time AI commentator. Users can stream live games using OBS Studio. Built with React.js and Express.js.',
+  tech: ['React.js', 'Express.js', 'OBS Studio', 'AI'],
+  image: '/assets/images/livehoops.png',
+  type: 'web',
+  link: '',
+  },
+  {
     title: 'Neust-Mgt Marketing E-Shop',
     description:
       'Neust-MGT Marketing E-Shop is designed to support student vendors by providing a dedicated platform to showcase and sell their products online.',
