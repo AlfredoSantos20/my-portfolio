@@ -49,14 +49,14 @@ const Navbar = () => {
   }, []);
 
   const linkClass = (id) =>
-    `font-bold transition ${
+    `font-bold transition font-['Poppins'] ${
       activeSection === id
         ? 'text-cyan-500'
         : 'text-gray-600 hover:text-cyan-400'
     }`;
 
   const mobileLinkClass = (id) =>
-    `flex flex-col items-center justify-center text-[11px] font-medium gap-1 px-4 py-2 rounded-xl transition duration-300 ${
+    `flex flex-col items-center justify-center text-[11px] font-medium gap-1 px-4 py-2 rounded-xl transition duration-300 font-['Poppins'] ${
       activeSection === id
         ? 'bg-cyan-100 text-cyan-500 shadow-sm'
         : 'text-gray-600 hover:text-cyan-400'
@@ -87,7 +87,7 @@ const Navbar = () => {
             : 'none',
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/30 backdrop-blur-md w-full max-w-[850px]"
+        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/40 backdrop-blur-lg w-full max-w-[850px] border-b border-gray-200/50"
       >
        <div className="flex flex-wrap items-center justify-between w-full px-4 sm:px-6 gap-4 sm:gap-6 max-w-[850px] mx-auto">
           <div className="flex-shrink-0">

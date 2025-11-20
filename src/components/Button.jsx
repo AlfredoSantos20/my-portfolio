@@ -11,7 +11,7 @@ const Button = ({
   className = '',
 }) => {
   const baseStyle =
-    'px-6 py-3 text-sm sm:text-base rounded-md font-semibold transition inline-flex items-center justify-center gap-2';
+    'px-6 py-3 text-sm sm:text-base rounded-md font-semibold transition inline-flex items-center justify-center gap-2 font-[\'Poppins\']';
   const solidStyle = 'text-white shadow'; // removed hardcoded bg
   const outlineStyle =
     'border border-cyan-400 text-cyan-400 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:text-white';

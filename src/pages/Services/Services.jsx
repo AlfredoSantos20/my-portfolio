@@ -51,17 +51,26 @@ const Services = ({ className }) => {
   });
 
   return (
-    <section id="services" className="bg-blue-50 bg-grid-light py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto text-center mb-12">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 dark:text-white hover:text-cyan-500 transition-colors">
-          My Tech Stack
-        </h2>
-        <p className="mt-2 text-gray-500 dark:text-gray-300 text-sm">
+    <section id="services" className="bg-gradient-to-b from-blue-50 via-white to-blue-50 bg-grid-light py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-10 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto text-center mb-16 relative z-10">
+        <div className="inline-block mb-4">
+          <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent hover:from-cyan-400 hover:via-blue-400 hover:to-cyan-400 transition-all duration-500 animate-gradient font-['Poppins']">
+            My Tech Stack
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-3 rounded-full"></div>
+        </div>
+        <p className="mt-4 text-gray-600 text-lg font-medium font-['Poppins']">
           A collection of tools and technologies I frequently use.
         </p>
       </div>
 
-      <div className={cn("mx-auto block overflow-hidden rounded-2xl", className)}>
+      <div className={cn("mx-auto block overflow-hidden rounded-2xl relative z-10", className)}>
         <div className="flex w-full items-center justify-center">
           <div className="max-w-[1300px] shrink-0">
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
@@ -81,16 +90,16 @@ const Services = ({ className }) => {
                     style={{ willChange: "transform" }}
                   >
                     {[...column, ...column].map((icon, iconIndex) => (
-                      <div
-                        key={`${colIndex}-${iconIndex}`}
-                        className="p-[2px] sm:p-[3px] bg-white rounded-xl w-[60px] sm:w-[70px] h-[60px] sm:h-[70px] flex items-center justify-center shadow-inner overflow-hidden"
+                    <div
+                      key={`${colIndex}-${iconIndex}`}
+                      className="p-[2px] sm:p-[3px] bg-gradient-to-br from-white to-gray-50 rounded-xl w-[60px] sm:w-[70px] h-[60px] sm:h-[70px] flex items-center justify-center shadow-lg shadow-gray-200/50 overflow-hidden"
+                    >
+                      <motion.div
+                        className="w-full h-full rounded-xl ring-2 ring-gray-200 hover:ring-cyan-500 hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 flex items-center justify-center bg-white hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-50"
                       >
-                        <motion.div
-                          className="w-full h-full rounded-xl ring ring-gray-200 hover:ring-cyan-500 hover:shadow-xl transition-all flex items-center justify-center"
-                        >
-                          {icon}
-                        </motion.div>
-                      </div>
+                        {icon}
+                      </motion.div>
+                    </div>
                     ))}
                   </motion.div>
                 </div>
