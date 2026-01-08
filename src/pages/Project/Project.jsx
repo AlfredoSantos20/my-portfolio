@@ -52,15 +52,6 @@ const allProjects = [
   },
 
   {
-    title: 'TourGab',
-    description:
-      'TourGab is a comprehensive web-based system that allows users to book and tour various destinations conveniently. The platform provides an intuitive interface for browsing available tour packages, viewing detailed destination information, making reservations, and managing bookings. It features real-time availability checking, secure payment processing, user authentication, booking history, and customer support features. Built with React.js and Tailwind CSS for a modern, responsive frontend, and Express.js with MySQL for robust backend functionality, the system includes comprehensive API documentation via Swagger for seamless integration and development.',
-    tech: ['React js', 'Tailwindcss', 'Express js', 'Swagger', 'MySQL'],
-    image: '/assets/images/tourgab2.png',
-    type: 'web',
-    link: '',
-  },
-  {
     title: 'Employee Attendance System',
     description:
       'A comprehensive system designed to record employee attendance with time in and time out functionality, featuring real-time facial recognition for secure and accurate tracking. The system eliminates traditional time cards and manual entry by using advanced facial recognition technology to automatically identify and log employees. It provides real-time attendance monitoring, generates detailed reports, tracks late arrivals and early departures, and offers admin dashboards for managing employee schedules and attendance records. Built with React.js and Tailwind CSS for a modern user interface, Express.js for the backend API, and MySQL for reliable data storage, the system includes Swagger documentation for easy integration and maintenance.',
@@ -121,6 +112,37 @@ const allProjects = [
     tech: ['Tailwind CSS', 'React.js'],
     image: '/assets/images/navigation1.png',
     type: 'web',
+    link: '',
+  },
+
+  {
+    title: 'TourGab',
+    description:
+      'TourGab is a comprehensive web-based system that allows users to book and tour various destinations conveniently. The platform provides an intuitive interface for browsing available tour packages, viewing detailed destination information, making reservations, and managing bookings. It features real-time availability checking, secure payment processing, user authentication, booking history, and customer support features. Built with React.js and Tailwind CSS for a modern, responsive frontend, and Express.js with MySQL for robust backend functionality, the system includes comprehensive API documentation via Swagger for seamless integration and development.',
+    tech: ['React js', 'Tailwindcss', 'Express js', 'Swagger', 'MySQL'],
+    image: '/assets/images/tourgab2.png',
+    type: 'web',
+    link: '',
+  },
+
+    {
+    title: 'Siguradocs',
+    description:
+      'Siguradocs is a comprehensive web-based document management system that enables users to securely request, manage, and track official documents. The platform provides an intuitive interface for creating document requests, tracking request status, viewing document history, and managing archived documents. It features blockchain-like document integrity verification using SHA-256 hashing, QR code generation for approved documents, real-time status updates, activity logging, and notification system. Built with React.js and Tailwind CSS for a modern, responsive frontend, and Express.js with MySQL for robust backend functionality, the system ensures secure document management with role-based access control for users and administrators.',
+    tech: ['React js', 'Tailwindcss', 'Express js', 'MySQL'],
+    image: '/assets/images/siguradocsweb.jpg',
+    type: 'web',
+    link: '',
+  },
+
+  
+    {
+    title: 'Siguradocs',
+    description:
+      'Siguradocs is a comprehensive mobile application for secure document management that enables users to request, track, and manage official documents directly from their smartphones. The app provides a seamless mobile experience for creating document requests, monitoring request status in real-time, viewing document history, accessing QR codes for approved documents, and managing archived documents. It features push notifications for status updates, blockchain-like document integrity verification, secure authentication, activity tracking, and offline document viewing capabilities. Built with Flutter for cross-platform mobile development and integrated with Express.js backend and MySQL database, the app ensures secure, efficient document management on the go with an intuitive user interface.',
+    tech: ['Dart', 'Flutter', 'Express js', 'MySQL'],
+    image: '/assets/images/siguradocsmobile.jpg',
+    type: 'mobile',
     link: '',
   },
   {
