@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
-import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
+import { FaArrowUpRightFromSquare, FaXmark } from 'react-icons/fa6';
 import '../../../public/assets/styles/global.css';
 
 const allProjects = [
@@ -115,15 +116,15 @@ const allProjects = [
     link: '',
   },
 
-  {
-    title: 'TourGab',
-    description:
-      'TourGab is a comprehensive web-based system that allows users to book and tour various destinations conveniently. The platform provides an intuitive interface for browsing available tour packages, viewing detailed destination information, making reservations, and managing bookings. It features real-time availability checking, secure payment processing, user authentication, booking history, and customer support features. Built with React.js and Tailwind CSS for a modern, responsive frontend, and Express.js with MySQL for robust backend functionality, the system includes comprehensive API documentation via Swagger for seamless integration and development.',
-    tech: ['React js', 'Tailwindcss', 'Express js', 'Swagger', 'MySQL'],
-    image: '/assets/images/tourgab2.png',
-    type: 'web',
-    link: '',
-  },
+  // {
+  //   title: 'TourGab',
+  //   description:
+  //     'TourGab is a comprehensive web-based system that allows users to book and tour various destinations conveniently. The platform provides an intuitive interface for browsing available tour packages, viewing detailed destination information, making reservations, and managing bookings. It features real-time availability checking, secure payment processing, user authentication, booking history, and customer support features. Built with React.js and Tailwind CSS for a modern, responsive frontend, and Express.js with MySQL for robust backend functionality, the system includes comprehensive API documentation via Swagger for seamless integration and development.',
+  //   tech: ['React js', 'Tailwindcss', 'Express js', 'Swagger', 'MySQL'],
+  //   image: '/assets/images/tourgab2.png',
+  //   type: 'web',
+  //   link: '',
+  // },
 
     {
     title: 'Siguradocs',
@@ -187,6 +188,12 @@ const Project = () => {
   const [filter, setFilter] = useState('all');
   const [selectedCard, setSelectedCard] = useState(null);
   const [expandedDescriptions, setExpandedDescriptions] = useState(new Set());
+  const [modalImage, setModalImage] = useState(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Function to get first sentence from description
   const getFirstSentence = (description) => {
@@ -218,6 +225,40 @@ const Project = () => {
       return newSet;
     });
   };
+
+  const openModal = (imageSrc, e) => {
+    if (e) {
+      e.stopPropagation(); // Prevent card click when clicking image
+      e.preventDefault(); // Prevent any default behavior
+    }
+    setModalImage(imageSrc);
+  };
+
+  const closeModal = (e) => {
+    if (e) {
+      e.stopPropagation();
+    }
+    setModalImage(null);
+  };
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && modalImage) {
+        closeModal();
+      }
+    };
+
+    if (modalImage) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [modalImage]);
 
   const [sliderRef] = useKeenSlider({
     slides: {
@@ -269,13 +310,13 @@ const Project = () => {
         </p>
       </div>
 
-      <div className="flex justify-center flex-wrap gap-4 mb-12 text-sm sm:text-base relative z-10">
+      <div className="flex justify-center items-center flex-wrap gap-4 mb-12 text-sm sm:text-base relative z-10">
         {[{ key: 'all', label: 'All Projects' }, { key: 'web', label: 'Web' }, { key: 'mobile', label: 'Mobile' }].map(
           ({ key, label }) => (
             <button
               key={key}
               onClick={() => setFilter(key)}
-              className={`relative font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] ${
+              className={`relative font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] flex-shrink-0 ${
                 filter === key
                   ? 'text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/50 scale-105'
                   : 'text-gray-600 bg-white hover:bg-gray-50 hover:text-cyan-500 border border-gray-200 hover:border-cyan-300 hover:scale-105'
@@ -299,12 +340,13 @@ const Project = () => {
             
             <div className="relative overflow-hidden h-52 rounded-t-2xl">
               {/* Image overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
               
               <img
                 src={project.image}
                 alt={project.title}
-                className={`h-full w-full object-cover transform transition-all duration-700 ${
+                onClick={(e) => openModal(project.image, e)}
+                className={`h-full w-full object-cover transform transition-all duration-700 cursor-pointer pointer-events-auto relative z-20 ${
                   selectedCard === idx ? 'scale-110 brightness-110' : 'group-hover:scale-110 group-hover:brightness-105'
                 }`}
               />
@@ -385,6 +427,36 @@ const Project = () => {
           </div>
         ))}
       </div>
+
+      {/* Image Modal */}
+      {mounted && modalImage && createPortal(
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 animate-fadeIn"
+          onClick={closeModal}
+        >
+          {/* Close button */}
+          <button
+            onClick={closeModal}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[10000] bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white rounded-full p-3 sm:p-4 transition-all duration-300 hover:scale-110 shadow-lg"
+            aria-label="Close modal"
+          >
+            <FaXmark className="h-5 w-5 sm:h-6 sm:w-6" />
+          </button>
+
+          {/* Modal Image Container */}
+          <div
+            className="relative max-w-full max-h-full w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={modalImage}
+              alt="Project preview"
+              className="max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 };
