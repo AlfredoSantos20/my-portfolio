@@ -116,16 +116,6 @@ const allProjects = [
     link: '',
   },
 
-  // {
-  //   title: 'TourGab',
-  //   description:
-  //     'TourGab is a comprehensive web-based system that allows users to book and tour various destinations conveniently. The platform provides an intuitive interface for browsing available tour packages, viewing detailed destination information, making reservations, and managing bookings. It features real-time availability checking, secure payment processing, user authentication, booking history, and customer support features. Built with React.js and Tailwind CSS for a modern, responsive frontend, and Express.js with MySQL for robust backend functionality, the system includes comprehensive API documentation via Swagger for seamless integration and development.',
-  //   tech: ['React js', 'Tailwindcss', 'Express js', 'Swagger', 'MySQL'],
-  //   image: '/assets/images/tourgab2.png',
-  //   type: 'web',
-  //   link: '',
-  // },
-
     {
     title: 'Siguradocs',
     description:
@@ -144,6 +134,16 @@ const allProjects = [
     tech: ['Dart', 'Flutter', 'Express js', 'MySQL'],
     image: '/assets/images/siguradocsmobile.jpg',
     type: 'mobile',
+    link: '',
+  },
+
+  {
+    title: 'Southern Luzon State University Guidance Counseling System',
+    description:
+      'A student-facing guidance counseling platform for Southern Luzon State University featuring a dashboard, booking system, schedule management, and gamified components including a virtual pet (Tazki) with feed and water mechanics. The system includes Games & Exercises, History, About, and Settings modules, with a modern UI and pixel-art style interactive elements designed to engage students. Built with React and TypeScript for the frontend and Express with Prisma for the backend, the platform provides a complete solution for university guidance and counseling services.',
+    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Express', 'Prisma'],
+    image: '/assets/images/slsu.png',
+    type: 'web',
     link: '',
   },
   {
@@ -182,6 +182,7 @@ const allProjects = [
     type: 'mobile',
     link: '',
   },
+
 ];
 
 const Project = () => {
@@ -190,6 +191,7 @@ const Project = () => {
   const [expandedDescriptions, setExpandedDescriptions] = useState(new Set());
   const [modalImage, setModalImage] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [viewAll, setViewAll] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -328,104 +330,195 @@ const Project = () => {
         )}
       </div>
 
-      <div key={filter} ref={sliderRef} className="keen-slider max-w-6xl mx-auto sm:px-4 relative z-10">
-        {filteredProjects.map((project, idx) => (
-          <div
-            key={idx}
-            onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
-            className="keen-slider__slide bg-white rounded-2xl shadow-lg w-[320px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 overflow-hidden"
-          >
-            {/* Gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
-            
-            <div className="relative overflow-hidden h-52 rounded-t-2xl">
-              {/* Image overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      {!viewAll && (
+        <div key={filter} ref={sliderRef} className="keen-slider max-w-6xl mx-auto sm:px-4 relative z-10">
+          {filteredProjects.map((project, idx) => (
+            <div
+              key={idx}
+              onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
+              className="keen-slider__slide bg-white rounded-2xl shadow-lg w-[320px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 overflow-hidden"
+            >
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
               
-              <img
-                src={project.image}
-                alt={project.title}
-                onClick={(e) => openModal(project.image, e)}
-                className={`h-full w-full object-cover transform transition-all duration-700 cursor-pointer pointer-events-auto relative z-20 ${
-                  selectedCard === idx ? 'scale-110 brightness-110' : 'group-hover:scale-110 group-hover:brightness-105'
-                }`}
-              />
-              
-              {/* Type badge */}
-              <span
-                className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
-                ${
-                  selectedCard === idx
-                    ? 'block sm:hidden translate-y-0 opacity-100'
-                    : 'hidden sm:group-hover:inline translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'
-                }`}
-              >
-                {project.type.toUpperCase()}
-              </span>
-              
-              {/* Link button */}
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Open project"
-                  onClick={(e) => e.stopPropagation()}
-                  className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
-                    ${
-                      selectedCard === idx
-                        ? 'block sm:hidden translate-y-0 opacity-100'
-                        : 'hidden sm:group-hover:flex translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'
-                    }`}
+              <div className="relative overflow-hidden h-40 rounded-t-2xl">
+                {/* Image overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  onClick={(e) => openModal(project.image, e)}
+                  className={`h-full w-full object-cover transform transition-all duration-700 cursor-pointer pointer-events-auto relative z-20 ${
+                    selectedCard === idx ? 'scale-110 brightness-110' : 'group-hover:scale-110 group-hover:brightness-105'
+                  }`}
+                />
+                
+                {/* Type badge */}
+                <span
+                  className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
+                  ${
+                    selectedCard === idx
+                      ? 'block sm:hidden translate-y-0 opacity-100'
+                      : 'hidden sm:group-hover:inline translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'
+                  }`}
                 >
-                  <FaArrowUpRightFromSquare className="h-4 w-4" />
-                </a>
-              )}
-            </div>
-
-            <div className="p-6 relative z-10 bg-white">
-              <h3 className="font-bold text-xl mb-3 text-gray-800 group-hover:text-cyan-600 transition-colors duration-300 font-['Poppins']">
-                {project.title}
-              </h3>
-              <div className="font-medium text-sm text-gray-600 mb-5 leading-relaxed font-['Poppins']">
-                {(() => {
-                  const isExpanded = expandedDescriptions.has(idx);
-                  const hasMore = hasMoreContent(project.description);
-                  const displayText = isExpanded 
-                    ? project.description 
-                    : getFirstSentence(project.description);
-                  
-                  return (
-                    <>
-                      <p className="mb-2">
-                        {displayText}
-                      </p>
-                      {hasMore && (
-                        <button
-                          onClick={(e) => toggleDescription(idx, e)}
-                          className="mt-2 text-cyan-500 hover:text-cyan-600 font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
-                        >
-                          {isExpanded ? 'View Less' : 'View More'}
-                          <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
-                        </button>
-                      )}
-                    </>
-                  );
-                })()}
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((techItem, i) => (
-                  <span
-                    key={i}
-                    className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 transition-all duration-200 font-['Poppins']"
+                  {project.type.toUpperCase()}
+                </span>
+                
+                {/* Link button */}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open project"
+                    onClick={(e) => e.stopPropagation()}
+                    className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
+                      ${
+                        selectedCard === idx
+                          ? 'block sm:hidden translate-y-0 opacity-100'
+                          : 'hidden sm:group-hover:flex translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'
+                      }`}
                   >
-                    {techItem}
-                  </span>
-                ))}
+                    <FaArrowUpRightFromSquare className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+
+              <div className="p-4 relative z-10 bg-white">
+                <h3 className="font-bold text-lg mb-2 text-gray-800 group-hover:text-cyan-600 transition-colors duration-300 font-['Poppins']">
+                  {project.title}
+                </h3>
+                <div className="font-medium text-sm text-gray-600 mb-3 leading-relaxed font-['Poppins']">
+                  {(() => {
+                    const isExpanded = expandedDescriptions.has(idx);
+                    const hasMore = hasMoreContent(project.description);
+                    const displayText = isExpanded 
+                      ? project.description 
+                      : getFirstSentence(project.description);
+                    
+                    return (
+                      <>
+                        <p className={`mb-2 ${!isExpanded ? 'line-clamp-2' : ''}`}>
+                          {displayText}
+                        </p>
+                        {hasMore && (
+                          <button
+                            onClick={(e) => toggleDescription(idx, e)}
+                            className="mt-2 text-cyan-500 hover:text-cyan-600 font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
+                          >
+                            {isExpanded ? 'View Less' : 'View More'}
+                            <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
+                          </button>
+                        )}
+                      </>
+                    );
+                  })()}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((techItem, i) => (
+                    <span
+                      key={i}
+                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 transition-all duration-200 font-['Poppins']"
+                    >
+                      {techItem}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      )}
+
+      {viewAll && (
+        <div className="max-w-6xl mx-auto sm:px-4 relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, idx) => (
+            <div
+              key={idx}
+              onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
+              className="bg-white rounded-2xl shadow-lg w-full max-w-[320px] mx-auto lg:max-w-none lg:mx-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
+              <div className="relative overflow-hidden h-40 rounded-t-2xl">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  onClick={(e) => openModal(project.image, e)}
+                  className={`h-full w-full object-cover transform transition-all duration-700 cursor-pointer pointer-events-auto relative z-20 ${
+                    selectedCard === idx ? 'scale-110 brightness-110' : 'group-hover:scale-110 group-hover:brightness-105'
+                  }`}
+                />
+                <span
+                  className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
+                  ${selectedCard === idx ? 'block sm:hidden translate-y-0 opacity-100' : 'hidden sm:group-hover:inline translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}
+                >
+                  {project.type.toUpperCase()}
+                </span>
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open project"
+                    onClick={(e) => e.stopPropagation()}
+                    className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
+                      ${selectedCard === idx ? 'block sm:hidden translate-y-0 opacity-100' : 'hidden sm:group-hover:flex translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}
+                  >
+                    <FaArrowUpRightFromSquare className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
+              <div className="p-4 relative z-10 bg-white">
+                <h3 className="font-bold text-lg mb-2 text-gray-800 group-hover:text-cyan-600 transition-colors duration-300 font-['Poppins']">
+                  {project.title}
+                </h3>
+                <div className="font-medium text-sm text-gray-600 mb-3 leading-relaxed font-['Poppins']">
+                  {(() => {
+                    const isExpanded = expandedDescriptions.has(idx);
+                    const hasMore = hasMoreContent(project.description);
+                    const displayText = isExpanded ? project.description : getFirstSentence(project.description);
+                    return (
+                      <>
+                        <p className={`mb-2 ${!isExpanded ? 'line-clamp-2' : ''}`}>{displayText}</p>
+                        {hasMore && (
+                          <button
+                            onClick={(e) => toggleDescription(idx, e)}
+                            className="mt-2 text-cyan-500 hover:text-cyan-600 font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
+                          >
+                            {isExpanded ? 'View Less' : 'View More'}
+                            <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
+                          </button>
+                        )}
+                      </>
+                    );
+                  })()}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((techItem, i) => (
+                    <span
+                      key={i}
+                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 transition-all duration-200 font-['Poppins']"
+                    >
+                      {techItem}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className="flex justify-center mt-10 relative z-10">
+        <button
+          onClick={() => setViewAll(!viewAll)}
+          className="font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/50 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/60"
+        >
+          {viewAll ? 'Close' : 'View All'}
+        </button>
       </div>
 
       {/* Image Modal */}
