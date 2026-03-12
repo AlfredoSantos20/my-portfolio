@@ -25,6 +25,15 @@ const allProjects = [
     link: 'https://www.cryptop2p.ph/',
   },
   {
+    title: 'MJA ComTech & I.T. Solutions',
+    description:
+      'MJA ComTech & I.T. Solutions is a fast and reliable fiber internet provider platform that showcases residential and business fiber plans with a modern, conversion-focused landing page. The site allows users to explore coverage areas, view detailed plan information, and submit applications or inquiries through an integrated application form. It features a real-time chat system for instant customer support, responsive layout across devices, and clear call-to-action flows to guide users from browsing to applying. Built with React.js and Tailwind CSS on the frontend and Express.js with MySQL on the backend, and hosted on Hostinger, the platform delivers a performant and scalable web experience for an ISP brand.',
+    tech: ['React.js', 'Tailwind CSS', 'Express.js', 'Hostinger', 'MySQL', 'Real-time Chat', 'Online Application'],
+    image: '/assets/images/mja.jpg',
+    type: 'web',
+    link: 'https://www.mjatechsolutions.online/',
+  },
+  {
     title: 'Tourista App',
     description:
       'Tourista is a comprehensive mobile application designed to assist people who want to travel in groups. The app provides a seamless platform for booking vans and other transportation services conveniently. Users can browse available vehicles, view detailed specifications and pricing, make reservations, and manage their bookings all in one place. The app features real-time availability updates, secure payment processing, booking history, and group coordination tools. Built with Flutter for cross-platform mobile development and FastAPI for the backend, it offers a fast and responsive user experience with comprehensive API documentation through Swagger.',
