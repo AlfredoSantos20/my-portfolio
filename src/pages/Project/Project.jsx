@@ -137,7 +137,7 @@ const allProjects = [
 
   
     {
-    title: 'Siguradocs',
+    title: 'Siguradocs Mobile',
     description:
       'Siguradocs is a comprehensive mobile application for secure document management that enables users to request, track, and manage official documents directly from their smartphones. The app provides a seamless mobile experience for creating document requests, monitoring request status in real-time, viewing document history, accessing QR codes for approved documents, and managing archived documents. It features push notifications for status updates, blockchain-like document integrity verification, secure authentication, activity tracking, and offline document viewing capabilities. Built with Flutter for cross-platform mobile development and integrated with Express.js backend and MySQL database, the app ensures secure, efficient document management on the go with an intuitive user interface.',
     tech: ['Dart', 'Flutter', 'Express js', 'MySQL'],
