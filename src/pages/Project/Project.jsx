@@ -13,7 +13,7 @@ const allProjects = [
     tech: ['Strapi', 'Type Script', 'Blockchain'],
     image: '/assets/images/aurumweb.png',
     type: 'web',
-    link: 'https://aurumplatform.io/',
+    link: 'https://app.aurumplatform.io/',
   },
   {
     title: 'Aurum Crypto P2P',
@@ -24,6 +24,15 @@ const allProjects = [
     type: 'web',
     link: 'https://www.cryptop2p.ph/',
   },
+  {
+  title: 'Lucid Media Website',
+  description:
+    'Lucid Media is a modern, conversion-focused digital agency website designed to showcase high-quality content production services and scalable digital solutions for brands. The platform highlights service offerings such as video editing, content automation, and social media growth systems, while guiding users through a seamless inquiry and onboarding process. It features a clean and responsive UI, engaging animations, and strategically placed call-to-action sections to maximize lead generation. Built with React.js and Tailwind CSS for a fast and responsive frontend experience, and powered by a Node.js backend for handling inquiries and integrations, the platform delivers a high-performance web presence tailored for content-driven businesses.',
+  tech: ['React.js', 'Tailwind CSS', 'Node.js', 'Framer Motion', 'Responsive Design', 'Lead Generation'],
+  image: '/assets/images/lucid-media.jpg',
+  type: 'web',
+  link: 'https://lucidmedia.info',
+},
   {
     title: 'MJA ComTech & I.T. Solutions',
     description:
