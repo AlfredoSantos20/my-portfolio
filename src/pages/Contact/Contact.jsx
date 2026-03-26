@@ -93,7 +93,7 @@ const Contact = () => {
                   LinkedIn
                 </a>
                 <a
-                  href="https://github.com/AlfredoSantos20?tab=repositories"
+                  href="https://github.com/AlfredoSantos20"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border-2 border-cyan-500 text-cyan-600 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white hover:border-transparent px-4 py-2 text-sm rounded-lg font-medium flex items-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 font-['Poppins']"
