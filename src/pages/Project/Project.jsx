@@ -10,10 +10,10 @@ const allProjects = [
     title: 'Global Worth Trading Inc.',
     description:
       'Global Worth Trading Inc. is a corporate website for a B2B supplier of solar generators, inverters, and industrial power systems. The site features a modern hero section with solar and power imagery, clear navigation for Home, About, Products, and Contact, and prominent call-to-action buttons for exploring products and making inquiries. Built with React.js and Tailwind CSS for a fast, responsive frontend and Node.js for backend functionality, it presents a professional brand experience for smart energy solutions.',
-    tech: ['React.js', 'Tailwind CSS', 'Node.js'],
+      tech: ['React.js', 'Tailwind CSS', 'Node.js', 'Framer Motion', 'Responsive Design'],
     image: '/assets/images/globalworth.jpg',
     type: 'web',
-    link: '',
+    link: 'http://globalworthtrading.com/',
   },
   {
   title: 'Lucid Media Website',
@@ -387,9 +387,9 @@ const Project = () => {
                   className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
                   ${
                     selectedCard === idx
-                      ? 'block sm:hidden translate-y-0 opacity-100'
-                      : 'hidden sm:group-hover:inline translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'
-                  }`}
+                      ? 'inline-flex max-sm:opacity-100'
+                      : 'hidden'
+                  } sm:inline-flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
                 >
                   {project.type.toUpperCase()}
                 </span>
@@ -405,9 +405,9 @@ const Project = () => {
                     className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
                       ${
                         selectedCard === idx
-                          ? 'block sm:hidden translate-y-0 opacity-100'
-                          : 'hidden sm:group-hover:flex translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'
-                      }`}
+                          ? 'inline-flex max-sm:opacity-100'
+                          : 'hidden'
+                      } sm:flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
                   >
                     <FaArrowUpRightFromSquare className="h-4 w-4" />
                   </a>
@@ -481,7 +481,11 @@ const Project = () => {
                 />
                 <span
                   className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
-                  ${selectedCard === idx ? 'block sm:hidden translate-y-0 opacity-100' : 'hidden sm:group-hover:inline translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}
+                  ${
+                    selectedCard === idx
+                      ? 'inline-flex max-sm:opacity-100'
+                      : 'hidden'
+                  } sm:inline-flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
                 >
                   {project.type.toUpperCase()}
                 </span>
@@ -493,7 +497,11 @@ const Project = () => {
                     title="Open project"
                     onClick={(e) => e.stopPropagation()}
                     className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
-                      ${selectedCard === idx ? 'block sm:hidden translate-y-0 opacity-100' : 'hidden sm:group-hover:flex translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}
+                      ${
+                        selectedCard === idx
+                          ? 'inline-flex max-sm:opacity-100'
+                          : 'hidden'
+                      } sm:flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
                   >
                     <FaArrowUpRightFromSquare className="h-4 w-4" />
                   </a>
