@@ -7,22 +7,13 @@ import '../../../public/assets/styles/global.css';
 
 const allProjects = [
   {
-    title: 'Aurum Platform Web',
+    title: 'Global Worth Trading Inc.',
     description:
-      'Aurum Platform Web is a sophisticated blockchain-based platform that enables users to swap their Quantum Metal Gold Tokens (QMGT) for USDT easily and securely. The platform ensures complete transparency, stability, and liquidity in token holdings with each transaction. It features real-time token price tracking, secure wallet integration, transaction history, and comprehensive portfolio management tools. Built with Strapi for content management and TypeScript for type-safe development, the platform leverages blockchain technology to provide a decentralized, trustless exchange experience. Users can monitor their token balances, execute swaps with minimal fees, and track all transactions on the blockchain for complete transparency and auditability.',
-    tech: ['Strapi', 'Type Script', 'Blockchain'],
-    image: '/assets/images/aurumweb.png',
+      'Global Worth Trading Inc. is a corporate website for a B2B supplier of solar generators, inverters, and industrial power systems. The site features a modern hero section with solar and power imagery, clear navigation for Home, About, Products, and Contact, and prominent call-to-action buttons for exploring products and making inquiries. Built with React.js and Tailwind CSS for a fast, responsive frontend and Node.js for backend functionality, it presents a professional brand experience for smart energy solutions.',
+    tech: ['React.js', 'Tailwind CSS', 'Node.js'],
+    image: '/assets/images/globalworth.jpg',
     type: 'web',
-    link: 'https://app.aurumplatform.io/',
-  },
-  {
-    title: 'Aurum Crypto P2P',
-    description:
-      'Aurum, CryptoP2P is the next-generation platform for fast, secure, and borderless peer-to-peer crypto transactions in the Philippines. The platform enables users to buy and sell cryptocurrencies directly with each other, eliminating the need for traditional exchanges. It features an intuitive interface for creating and managing trade offers, secure escrow services, real-time chat communication between buyers and sellers, and comprehensive transaction history. Built with modern technologies including React.js for the frontend and Nest.js for the backend, the platform ensures secure, transparent, and efficient peer-to-peer trading experiences with robust API documentation via Swagger.',
-    tech: ['React js', 'Nest js', 'Swagger'],
-    image: '/assets/images/p2pImg2.png',
-    type: 'web',
-    link: 'https://www.cryptop2p.ph/',
+    link: '',
   },
   {
   title: 'Lucid Media Website',
@@ -50,6 +41,24 @@ const allProjects = [
     image: '/assets/images/tourista.png',
     type: 'mobile',
     link: 'https://tourista-app.vercel.app/',
+  },
+  {
+    title: 'Aurum Platform Web',
+    description:
+      'Aurum Platform Web is a sophisticated blockchain-based platform that enables users to swap their Quantum Metal Gold Tokens (QMGT) for USDT easily and securely. The platform ensures complete transparency, stability, and liquidity in token holdings with each transaction. It features real-time token price tracking, secure wallet integration, transaction history, and comprehensive portfolio management tools. Built with Strapi for content management and TypeScript for type-safe development, the platform leverages blockchain technology to provide a decentralized, trustless exchange experience. Users can monitor their token balances, execute swaps with minimal fees, and track all transactions on the blockchain for complete transparency and auditability.',
+    tech: ['Strapi', 'Type Script', 'Blockchain'],
+    image: '/assets/images/aurumweb.png',
+    type: 'web',
+    link: 'https://app.aurumplatform.io/',
+  },
+  {
+    title: 'Aurum Crypto P2P',
+    description:
+      'Aurum, CryptoP2P is the next-generation platform for fast, secure, and borderless peer-to-peer crypto transactions in the Philippines. The platform enables users to buy and sell cryptocurrencies directly with each other, eliminating the need for traditional exchanges. It features an intuitive interface for creating and managing trade offers, secure escrow services, real-time chat communication between buyers and sellers, and comprehensive transaction history. Built with modern technologies including React.js for the frontend and Nest.js for the backend, the platform ensures secure, transparent, and efficient peer-to-peer trading experiences with robust API documentation via Swagger.',
+    tech: ['React js', 'Nest js', 'Swagger'],
+    image: '/assets/images/p2pImg2.png',
+    type: 'web',
+    link: 'https://www.cryptop2p.ph/',
   },
   {
     title: 'Aurum Platform Mobile',
@@ -200,6 +209,7 @@ const allProjects = [
     type: 'mobile',
     link: '',
   },
+
 
 ];
 
