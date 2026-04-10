@@ -107,6 +107,15 @@ const allProjects = [
     link: '', 
   },
   {
+    title: 'LinkSphere',
+    description:
+      'LinkSphere is a social media platform where users can create posts, browse a personalized news feed, and manage their profiles. It includes short-form video through a Reels experience alongside messaging, trending topics, suggested connections, notifications, and dark mode. Built with React.js and Tailwind CSS for the frontend, Node.js and Express.js for the API, and MySQL for data storage.',
+    tech: ['React.js', 'Tailwind CSS', 'Express.js', 'MySQL', 'Node.js'],
+    image: '/assets/images/linksphere.jpg',
+    type: 'web',
+    link: '',
+  },
+  {
     title: 'OCR System with Real-time Detection',
     description:
       'An intelligent Optical Character Recognition (OCR) system designed to detect and extract real-time data from images and live camera feeds. The system specializes in capturing student papers and automatically extracting only the essential data needed for processing. It leverages Tesseract OCR engine for accurate text recognition and OpenAI for advanced data detection and intelligent content analysis. The platform features real-time camera integration for live document scanning, image upload capabilities for batch processing, intelligent data extraction that filters and captures only relevant information, and machine learning algorithms for improved accuracy over time. Built with Laravel framework for robust backend functionality, Bootstrap for responsive and modern UI design, MySQL for efficient data storage and retrieval, OpenAI integration for intelligent content understanding, and machine learning models for continuous improvement, this OCR system provides an efficient solution for automated document processing and data extraction in educational and administrative environments.',
@@ -209,6 +218,7 @@ const allProjects = [
     type: 'mobile',
     link: '',
   },
+
 
 
 ];
