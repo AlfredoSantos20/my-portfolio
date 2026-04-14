@@ -115,7 +115,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-3 text-gray-600 flex-wrap justify-center">
             <a
-              href={githubURL}
+              href={""}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-500 cursor-pointer"
