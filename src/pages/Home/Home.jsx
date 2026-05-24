@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '../../components/Button.jsx';
 import { FaDownload } from 'react-icons/fa6';
 import { Typewriter } from 'react-simple-typewriter';
+import ProfileCard from '../../components/ProfileCard/ProfileCard.jsx';
 
 const Home = () => {
   const [hasDownloaded, setHasDownloaded] = useState(false);
@@ -67,18 +68,19 @@ const Home = () => {
       </div>
 
       <div className="flex-1 flex justify-center relative z-10">
-        <div
-          data-aos="slide-left"
-          className="bg-gradient-to-br from-cyan-400 via-blue-500 to-cyan-600 p-4 sm:p-5 rounded-3xl shadow-2xl shadow-cyan-500/30 group max-w-[280px] sm:max-w-[340px] md:max-w-[400px] w-full hover:shadow-cyan-500/40 transition-all duration-500"
-        >
-          <div className="relative overflow-hidden rounded-3xl">
-            <img
-              src="/me2.jpg"
-              alt="Alfredo"
-              className="rounded-3xl w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"></div>
-          </div>
+        <div data-aos="slide-left" className="w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px]">
+          <ProfileCard
+            name="Alfredo B. Santos Jr."
+            title="Full Stack Developer"
+            handle="tazki.santosjr"
+            status="Facebook"
+            contactText="Contact Me"
+            avatarUrl="/me2.jpg"
+            showUserInfo={true}
+            enableTilt={true}
+            enableMobileTilt={false}
+            onContactClick={() => window.open('https://web.facebook.com/tazki.santosjr','_blank','noopener,noreferrer')}
+          />
         </div>
       </div>
     </div>

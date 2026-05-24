@@ -1,17 +1,66 @@
-"use client";
-
-import React from "react";
-import { cn } from "../../lib/utils.js";
-import { motion } from "framer-motion";
+import React from 'react';
+import DomeGallery from '../../components/DomeGallery/DomeGallery.jsx';
+import { motion } from 'framer-motion';
 import {
-  FaHtml5, FaCss3Alt, FaJs, FaPhp, FaReact, FaDocker, FaGit, FaGithub,
-} from "react-icons/fa";
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaPhp,
+  FaReact,
+  FaDocker,
+  FaGit,
+  FaGithub,
+} from 'react-icons/fa';
 import {
-  SiMysql, SiTailwindcss, SiBootstrap, SiMui, SiNestjs, SiJquery,
-  SiLaravel, SiPython, SiExpress, SiStrapi, SiFlutter, SiHostinger,
-  SiAndroidstudio, SiMongodb, SiAxios,
-} from "react-icons/si";
+  SiMysql,
+  SiTailwindcss,
+  SiBootstrap,
+  SiMui,
+  SiNestjs,
+  SiJquery,
+  SiLaravel,
+  SiPython,
+  SiExpress,
+  SiStrapi,
+  SiFlutter,
+  SiHostinger,
+  SiMongodb,
+  SiAxios,
+} from 'react-icons/si';
 
+const images = [
+  { src: 'https://cdn.simpleicons.org/amazonaws', alt: 'AWS' },
+  { src: 'https://cdn.simpleicons.org/react', alt: 'React' },
+  { src: 'https://cdn.simpleicons.org/react', alt: 'React Native' },
+
+  'https://cdn.simpleicons.org/html5',
+  'https://cdn.simpleicons.org/css3',
+  'https://cdn.simpleicons.org/javascript',
+  'https://cdn.simpleicons.org/php',
+  'https://cdn.simpleicons.org/mysql',
+  'https://cdn.simpleicons.org/mongodb',
+  'https://cdn.simpleicons.org/react',
+  'https://cdn.simpleicons.org/tailwindcss',
+  'https://cdn.simpleicons.org/bootstrap',
+  'https://cdn.simpleicons.org/mui',
+  'https://cdn.simpleicons.org/nestjs',
+  'https://cdn.simpleicons.org/express',
+  'https://cdn.simpleicons.org/laravel',
+  'https://cdn.simpleicons.org/python',
+  'https://cdn.simpleicons.org/jquery',
+  'https://cdn.simpleicons.org/git',
+  'https://cdn.simpleicons.org/github',
+  'https://cdn.simpleicons.org/strapi',
+  'https://cdn.simpleicons.org/hostinger',
+  'https://cdn.simpleicons.org/docker',
+  'https://cdn.simpleicons.org/flutter',
+  'https://cdn.simpleicons.org/awsamplify',
+  'https://cdn.simpleicons.org/amazonaws',
+  '/assets/images/as.png',
+  'https://cdn.simpleicons.org/axios',
+];
+
+// Original mobile tech stack (scrolling columns)
 const techStack = [
   <FaHtml5 size={40} color="#E34F26" aria-label="HTML5" />,
   <FaCss3Alt size={40} color="#1572B6" aria-label="CSS3" />,
@@ -43,7 +92,7 @@ const techStack = [
   <SiAxios size={40} color="#5A29E4" aria-label="Axios" />,
 ];
 
-const Services = ({ className }) => {
+const MobileTechStack = () => {
   const chunkSize = Math.ceil(techStack.length / 4);
   const chunks = Array.from({ length: 4 }, (_, colIndex) => {
     const start = colIndex * chunkSize;
@@ -51,65 +100,91 @@ const Services = ({ className }) => {
   });
 
   return (
-    <section id="services" className="bg-gradient-to-b from-blue-50 via-white to-blue-50 bg-grid-light py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute bottom-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div className="w-full px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto text-center mb-8">
+        <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-['Poppins']">
+          My Tech Stack
+        </h2>
+        <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-3 rounded-full"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto text-center mb-16 relative z-10">
-        <div className="inline-block mb-4">
-          <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent hover:from-cyan-400 hover:via-blue-400 hover:to-cyan-400 transition-all duration-500 animate-gradient font-['Poppins']">
+      <div className="flex w-full items-center justify-center">
+        <div className="max-w-[1100px] shrink-0">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
+            {chunks.map((column, colIndex) => (
+              <div
+                key={colIndex}
+                className="relative h-[300px] sm:h-[340px] w-[68px] sm:w-[78px] overflow-hidden"
+              >
+                <motion.div
+                  animate={{ y: ['0%', '-50%'] }}
+                  transition={{ duration: 20, ease: 'linear', repeat: Infinity }}
+                  className="flex flex-col gap-5 justify-center"
+                  style={{ willChange: 'transform' }}
+                >
+                  {[...column, ...column].map((icon, iconIndex) => (
+                    <div
+                      key={`${colIndex}-${iconIndex}`}
+                      className="p-[2px] bg-gradient-to-br from-white to-gray-50 rounded-xl w-[58px] sm:w-[66px] h-[58px] sm:h-[66px] flex items-center justify-center shadow-md shadow-gray-200/40"
+                    >
+                      <div className="w-full h-full rounded-xl ring-2 ring-gray-200 bg-white flex items-center justify-center">
+                        {icon}
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function Services() {
+  return (
+    <section
+      id="services"
+      className="w-full"
+      style={{
+        minHeight: '100vh',
+        display: 'grid',
+        placeItems: 'center',
+        paddingTop: '96px',
+        overflow: 'hidden',
+        margin: '0 auto',
+      }}
+    >
+      {/* Mobile: original tech stack */}
+      <div className="block md:hidden w-full">
+        <MobileTechStack />
+      </div>
+
+      {/* Desktop and up: Dome gallery */}
+      <div className="hidden md:block w-full">
+        <div className="max-w-7xl mx-auto text-center mb-4">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-['Poppins']">
             My Tech Stack
           </h2>
           <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-3 rounded-full"></div>
         </div>
-        <p className="mt-4 text-gray-600 text-lg font-medium font-['Poppins']">
-          A collection of tools and technologies I frequently use.
-        </p>
       </div>
-
-      <div className={cn("mx-auto block overflow-hidden rounded-2xl relative z-10", className)}>
-        <div className="flex w-full items-center justify-center">
-          <div className="max-w-[1300px] shrink-0">
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
-              {chunks.map((column, colIndex) => (
-                <div
-                  key={colIndex}
-                  className="relative h-[300px] sm:h-[350px] md:h-[400px] w-[70px] sm:w-[80px] md:w-[90px] overflow-hidden"
-                >
-                  <motion.div
-                    animate={{ y: ["0%", "-50%"] }}
-                    transition={{
-                      duration: 20,
-                      ease: "linear",
-                      repeat: Infinity,
-                    }}
-                    className="flex flex-col gap-6 justify-center"
-                    style={{ willChange: "transform" }}
-                  >
-                    {[...column, ...column].map((icon, iconIndex) => (
-                    <div
-                      key={`${colIndex}-${iconIndex}`}
-                      className="p-[2px] sm:p-[3px] bg-gradient-to-br from-white to-gray-50 rounded-xl w-[60px] sm:w-[70px] h-[60px] sm:h-[70px] flex items-center justify-center shadow-lg shadow-gray-200/50 overflow-hidden"
-                    >
-                      <motion.div
-                        className="w-full h-full rounded-xl ring-2 ring-gray-200 hover:ring-cyan-500 hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300 flex items-center justify-center bg-white hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-50"
-                      >
-                        {icon}
-                      </motion.div>
-                    </div>
-                    ))}
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <div
+        className="hidden md:block w-full"
+        style={{
+          width: '100%',
+          height: 'calc(100vh - 96px)',
+        }}
+      >
+        <DomeGallery
+          images={images}
+          grayscale={false}
+          fitBasis="min"
+          overlayBlurColor="transparent"
+          autoRotateSpeed={2.0}
+        />
       </div>
     </section>
   );
-};
-
-export default Services;
+}
