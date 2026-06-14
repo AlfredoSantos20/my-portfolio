@@ -24,6 +24,15 @@ const allProjects = [
   type: 'web',
   link: 'https://innov8intl.com/',
 },
+{
+  title: 'Tiboy Tribute — John Arcilla at 60',
+  description:
+    'A cinematic tribute website honoring Filipino actor John Arcilla (Tiboy), built for his 60th birthday celebration. The site blends a theatrical black-and-gold design with an elegant digital invitation, live countdown to the June 20, 2026 event at Tramway Timog, and sections for guests to share heartfelt messages and favorite memories—with optional photo attachments. It also features a magazine-style hosts showcase, a detailed program flow timeline, and a Live Show Dashboard for real-time event control with segment timers, overtime tracking, and fullscreen mode for stage use. Built with React.js and Tailwind CSS for a responsive, premium frontend, and Express.js with MySQL for handling guest submissions and schedule data.',
+  tech: ['React js', 'Tailwind css', 'Express js', 'MySQL'],
+  image: '/assets/images/johnarcilla.png',
+  type: 'web',
+  link: '',
+},
   {
     title: 'Global Worth Trading Inc.',
     description:
