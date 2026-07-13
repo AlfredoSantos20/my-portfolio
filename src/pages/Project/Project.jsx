@@ -7,10 +7,19 @@ import '../../../public/assets/styles/global.css';
 
 const allProjects = [
   {
+    title: 'Empireone inc.',
+    description:
+      'EmpireOne Inc. is an IT services website for a digital product studio that architects, designs, and engineers premium software for ambitious teams — from custom platforms and mobile apps to AI, cloud, and cybersecurity.',
+    tech: [ 'Node js','React js', 'Tanstack', 'Tailwind css'],
+    image: '/assets/images/empireone.png',
+    type: 'web',
+    link: 'https://www.empireone.ph/',
+  },
+  {
   title: 'Malabanan Siphoning Septic Tank',
   description:
     'Trusted and professional Malabanan Siphoning Septic Tank services available 24/7 for residential and commercial properties. We provide fast-response septic tank cleaning, declogging, plumbing, and drainage solutions with skilled technicians, modern equipment, and reliable customer support. Serving Tacloban, Iloilo, Bacolod, Quezon City, and Bohol with clean, affordable, and hassle-free service that customers can depend on anytime.',
-  tech: ['React js', 'Tailwind css', 'Malabanan', 'Framer Motion', 'Node js'],
+    tech: [ 'Node js','React js', 'Tanstack', 'Tailwind css'],
   image: '/assets/images/malabanan.png',
   type: 'web',
   link: 'https://malabanansiphoningseptictank.com',
@@ -19,7 +28,7 @@ const allProjects = [
   title: 'innov8 international distribution inc.',
   description:
     'Innov8 International Distribution Inc. is a trusted distributor of high-quality medical supplies and healthcare products serving hospitals, clinics, laboratories, and healthcare professionals since 2010. The website was designed with a modern and professional user experience, showcasing reliable medical equipment, healthcare solutions, and company services while building trust and credibility for clients and partners nationwide.',
-  tech: ['React js', 'Tailwind css', 'Framer Motion', 'Node js'],
+    tech: [ 'Node js','React js', 'Tanstack', 'Tailwind css'],
   image: '/assets/images/innov8.png',
   type: 'web',
   link: 'https://innov8intl.com/',
