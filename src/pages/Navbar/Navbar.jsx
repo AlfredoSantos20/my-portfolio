@@ -8,10 +8,14 @@ import {
   FaLinkedinIn,
   FaGithub,
   FaInstagram,
+  FaMoon,
+  FaSun,
 } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { useTheme } from '../../context/ThemeContext.jsx';
 
 const Navbar = () => {
+  const { isDark, toggleTheme } = useTheme();
   const [scrollWidth, setScrollWidth] = useState(0);
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
@@ -51,15 +55,15 @@ const Navbar = () => {
   const linkClass = (id) =>
     `font-bold transition font-['Poppins'] ${
       activeSection === id
-        ? 'text-cyan-500'
-        : 'text-gray-600 hover:text-cyan-400'
+        ? 'text-cyan-500 dark:text-[#06B6D4]'
+        : 'text-gray-600 hover:text-cyan-400 dark:text-[#A8B5C7] dark:hover:text-[#22D3EE]'
     }`;
 
   const mobileLinkClass = (id) =>
     `flex flex-col items-center justify-center text-[11px] font-medium gap-1 px-4 py-2 rounded-xl transition duration-300 font-['Poppins'] ${
       activeSection === id
-        ? 'bg-cyan-100 text-cyan-500 shadow-sm'
-        : 'text-gray-600 hover:text-cyan-400'
+        ? 'bg-cyan-100 text-cyan-500 shadow-sm dark:bg-[#0A1728] dark:text-[#06B6D4]'
+        : 'text-gray-600 hover:text-cyan-400 dark:text-[#A8B5C7] dark:hover:text-[#22D3EE]'
     }`;
 
   const githubURL = import.meta.env.VITE_GITHUB_URL;
@@ -71,7 +75,7 @@ const Navbar = () => {
     <>
       {/* Progress bar */}
       <div
-        className="fixed top-0 left-0 w-full h-1 bg-cyan-400 transition-all duration-75 z-[60]"
+        className="fixed top-0 left-0 w-full h-1 bg-cyan-400 dark:bg-[#06B6D4] transition-all duration-75 z-[60]"
         style={{ width: `${scrollWidth}%` }}
       />
 
@@ -87,7 +91,7 @@ const Navbar = () => {
             : 'none',
         }}
         transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/40 backdrop-blur-lg w-full max-w-[850px] border-b border-gray-200/50"
+        className="hidden md:flex fixed top-0 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center px-8 py-4 bg-blue-50/40 backdrop-blur-lg w-full max-w-[850px] border-b border-gray-200/50 dark:bg-[#071321]/90 dark:border-[#183653]"
       >
        <div className="flex flex-wrap items-center justify-between w-full px-4 sm:px-6 gap-4 sm:gap-6 max-w-[850px] mx-auto">
           <div className="flex-shrink-0">
@@ -113,12 +117,20 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="flex items-center gap-3 text-gray-600 flex-wrap justify-center">
+          <div className="flex items-center gap-3 text-gray-600 dark:text-[#A8B5C7] flex-wrap justify-center">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="p-2 rounded-full hover:text-[#06B6D4] dark:hover:text-[#22D3EE] hover:bg-cyan-50 dark:hover:bg-[#0A1728] transition-colors cursor-pointer"
+            >
+              {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
+            </button>
             <a
               href={""}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500 cursor-pointer"
+              className="hover:text-cyan-500 dark:hover:text-[#22D3EE] cursor-pointer"
             >
               <FaGithub size={18} />
             </a>
@@ -126,7 +138,7 @@ const Navbar = () => {
               href={facebookURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500 cursor-pointer"
+              className="hover:text-cyan-500 dark:hover:text-[#22D3EE] cursor-pointer"
             >
               <FaFacebookF size={18} />
             </a>
@@ -134,7 +146,7 @@ const Navbar = () => {
               href={instagramURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500 cursor-pointer"
+              className="hover:text-cyan-500 dark:hover:text-[#22D3EE] cursor-pointer"
             >
               <FaInstagram size={20} />
             </a>
@@ -142,7 +154,7 @@ const Navbar = () => {
               href={linkedinURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-cyan-500 cursor-pointer"
+              className="hover:text-cyan-500 dark:hover:text-[#22D3EE] cursor-pointer"
             >
               <FaLinkedinIn size={18} />
             </a>
@@ -153,7 +165,7 @@ const Navbar = () => {
       {/* Mobile Navbar */}
       <div
         data-aos="fade-down"
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-blue-50/30 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] bg-blue-50/30 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl flex justify-around items-center py-3 px-2 md:hidden z-50 dark:bg-[#071321]/90 dark:border-[#183653]"
       >
         <a
           href="#home"
@@ -171,6 +183,15 @@ const Navbar = () => {
           <FaProjectDiagram size={20} />
           Projects
         </a>
+        <button
+          type="button"
+          onClick={toggleTheme}
+          aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          className="flex flex-col items-center justify-center text-[11px] font-medium gap-1 px-3 py-2 rounded-xl transition duration-300 font-['Poppins'] text-gray-600 hover:text-cyan-400 dark:text-[#A8B5C7] dark:hover:text-[#22D3EE]"
+        >
+          {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+          Theme
+        </button>
         <a
           href="#services"
           onClick={() => setActiveSection('services')}

@@ -102,10 +102,10 @@ const MobileTechStack = () => {
   return (
     <div className="w-full px-4 sm:px-6">
       <div className="max-w-7xl mx-auto text-center mb-8">
-        <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-['Poppins']">
+        <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 dark:from-[#06B6D4] dark:via-[#3B82F6] dark:to-[#06B6D4] bg-clip-text text-transparent font-['Poppins']">
           My Tech Stack
         </h2>
-        <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-3 rounded-full"></div>
+        <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] mx-auto mt-3 rounded-full"></div>
       </div>
 
       <div className="flex w-full items-center justify-center">
@@ -125,9 +125,9 @@ const MobileTechStack = () => {
                   {[...column, ...column].map((icon, iconIndex) => (
                     <div
                       key={`${colIndex}-${iconIndex}`}
-                      className="p-[2px] bg-gradient-to-br from-white to-gray-50 rounded-xl w-[58px] sm:w-[66px] h-[58px] sm:h-[66px] flex items-center justify-center shadow-md shadow-gray-200/40"
+                      className="p-[2px] bg-gradient-to-br from-white to-gray-50 dark:from-[#06101E] dark:to-[#0A1728] rounded-xl w-[58px] sm:w-[66px] h-[58px] sm:h-[66px] flex items-center justify-center shadow-md shadow-gray-200/40 dark:shadow-[#183653]/40"
                     >
-                      <div className="w-full h-full rounded-xl ring-2 ring-gray-200 bg-white flex items-center justify-center">
+                      <div className="w-full h-full rounded-xl ring-2 ring-gray-200 dark:ring-[#183653] bg-white dark:bg-[#06101E] flex items-center justify-center">
                         {icon}
                       </div>
                     </div>
@@ -164,10 +164,10 @@ export default function Services() {
       {/* Desktop and up: Dome gallery */}
       <div className="hidden md:block w-full">
         <div className="max-w-7xl mx-auto text-center mb-4">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent font-['Poppins']">
+          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 dark:from-[#06B6D4] dark:via-[#3B82F6] dark:to-[#06B6D4] bg-clip-text text-transparent font-['Poppins']">
             My Tech Stack
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-3 rounded-full"></div>
+          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] mx-auto mt-3 rounded-full"></div>
         </div>
       </div>
       <div

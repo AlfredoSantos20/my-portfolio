@@ -376,22 +376,22 @@ const Project = () => {
       : allProjects.filter((project) => project.type === filter);
 
   return (
-    <section className="py-16 px-6 bg-gradient-to-b from-blue-50 via-white to-blue-50 bg-grid-light relative overflow-hidden">
+    <section className="py-16 px-6 bg-gradient-to-b from-blue-50 via-white to-blue-50 dark:from-[#030B18] dark:via-[#030B18] dark:to-[#030B18] bg-grid-light relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-200 dark:bg-[#06B6D4] rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute top-40 right-10 w-72 h-72 bg-blue-200 dark:bg-[#3B82F6] rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-300 dark:bg-[#06B6D4] rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="text-center mb-16 relative z-10">
         <div className="inline-block mb-4">
-          <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 bg-clip-text text-transparent hover:from-cyan-400 hover:via-blue-400 hover:to-cyan-400 transition-all duration-500 animate-gradient font-['Poppins']">
+          <h2 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 dark:from-[#06B6D4] dark:via-[#3B82F6] dark:to-[#06B6D4] bg-clip-text text-transparent hover:from-cyan-400 hover:via-blue-400 hover:to-cyan-400 dark:hover:from-[#22D3EE] dark:hover:via-[#3B82F6] dark:hover:to-[#22D3EE] transition-all duration-500 animate-gradient font-['Poppins']">
             My Projects
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mt-3 rounded-full"></div>
+          <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] mx-auto mt-3 rounded-full"></div>
         </div>
-        <p className="text-gray-600 mt-4 text-lg font-medium font-['Poppins']">
+        <p className="text-gray-600 dark:text-[#A8B5C7] mt-4 text-lg font-medium font-['Poppins']">
           A selection of my recent work and personal projects
         </p>
       </div>
@@ -404,8 +404,8 @@ const Project = () => {
               onClick={() => setFilter(key)}
               className={`relative font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] flex-shrink-0 ${
                 filter === key
-                  ? 'text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/50 scale-105'
-                  : 'text-gray-600 bg-white hover:bg-gray-50 hover:text-cyan-500 border border-gray-200 hover:border-cyan-300 hover:scale-105'
+                  ? 'text-white bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] shadow-lg shadow-cyan-500/50 scale-105'
+                  : 'text-gray-600 bg-white hover:bg-gray-50 hover:text-cyan-500 border border-gray-200 hover:border-cyan-300 hover:scale-105 dark:text-[#A8B5C7] dark:bg-[#06101E] dark:hover:bg-[#0A1728] dark:hover:text-[#22D3EE] dark:border-[#183653] dark:hover:border-[#06B6D4]'
               }`}
             >
               {label}
@@ -420,7 +420,7 @@ const Project = () => {
             <div
               key={idx}
               onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
-              className="keen-slider__slide bg-white rounded-2xl shadow-lg w-[320px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 overflow-hidden"
+              className="keen-slider__slide bg-white dark:bg-[#06101E] rounded-2xl shadow-lg w-[320px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:bg-[#0A1728] overflow-hidden"
             >
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
@@ -470,11 +470,11 @@ const Project = () => {
                 )}
               </div>
 
-              <div className="p-4 relative z-10 bg-white">
-                <h3 className="font-bold text-lg mb-2 text-gray-800 group-hover:text-cyan-600 transition-colors duration-300 font-['Poppins']">
+              <div className="p-4 relative z-10 bg-white dark:bg-[#06101E]">
+                <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-[#F8FAFC] group-hover:text-cyan-600 dark:group-hover:text-[#22D3EE] transition-colors duration-300 font-['Poppins']">
                   {project.title}
                 </h3>
-                <div className="font-medium text-sm text-gray-600 mb-3 leading-relaxed font-['Poppins']">
+                <div className="font-medium text-sm text-gray-600 dark:text-[#A8B5C7] mb-3 leading-relaxed font-['Poppins']">
                   {(() => {
                     const isExpanded = expandedDescriptions.has(idx);
                     const hasMore = hasMoreContent(project.description);
@@ -490,7 +490,7 @@ const Project = () => {
                         {hasMore && (
                           <button
                             onClick={(e) => toggleDescription(idx, e)}
-                            className="mt-2 text-cyan-500 hover:text-cyan-600 font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
+                            className="mt-2 text-cyan-500 hover:text-cyan-600 dark:text-[#06B6D4] dark:hover:text-[#22D3EE] font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
                           >
                             {isExpanded ? 'View Less' : 'View More'}
                             <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
@@ -504,7 +504,7 @@ const Project = () => {
                   {project.tech.map((techItem, i) => (
                     <span
                       key={i}
-                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 transition-all duration-200 font-['Poppins']"
+                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 dark:from-[#06101E] dark:to-[#0A1728] dark:text-[#A8B5C7] dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:from-[#0A1728] dark:hover:to-[#06101E] dark:hover:text-[#22D3EE] transition-all duration-200 font-['Poppins']"
                     >
                       {techItem}
                     </span>
@@ -522,7 +522,7 @@ const Project = () => {
             <div
               key={idx}
               onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
-              className="bg-white rounded-2xl shadow-lg w-full max-w-[320px] mx-auto lg:max-w-none lg:mx-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 overflow-hidden"
+              className="bg-white dark:bg-[#06101E] rounded-2xl shadow-lg w-full max-w-[320px] mx-auto lg:max-w-none lg:mx-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:bg-[#0A1728] overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
               <div className="relative overflow-hidden h-40 rounded-t-2xl">
@@ -563,11 +563,11 @@ const Project = () => {
                   </a>
                 )}
               </div>
-              <div className="p-4 relative z-10 bg-white">
-                <h3 className="font-bold text-lg mb-2 text-gray-800 group-hover:text-cyan-600 transition-colors duration-300 font-['Poppins']">
+              <div className="p-4 relative z-10 bg-white dark:bg-[#06101E]">
+                <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-[#F8FAFC] group-hover:text-cyan-600 dark:group-hover:text-[#22D3EE] transition-colors duration-300 font-['Poppins']">
                   {project.title}
                 </h3>
-                <div className="font-medium text-sm text-gray-600 mb-3 leading-relaxed font-['Poppins']">
+                <div className="font-medium text-sm text-gray-600 dark:text-[#A8B5C7] mb-3 leading-relaxed font-['Poppins']">
                   {(() => {
                     const isExpanded = expandedDescriptions.has(idx);
                     const hasMore = hasMoreContent(project.description);
@@ -578,7 +578,7 @@ const Project = () => {
                         {hasMore && (
                           <button
                             onClick={(e) => toggleDescription(idx, e)}
-                            className="mt-2 text-cyan-500 hover:text-cyan-600 font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
+                            className="mt-2 text-cyan-500 hover:text-cyan-600 dark:text-[#06B6D4] dark:hover:text-[#22D3EE] font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
                           >
                             {isExpanded ? 'View Less' : 'View More'}
                             <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
@@ -592,7 +592,7 @@ const Project = () => {
                   {project.tech.map((techItem, i) => (
                     <span
                       key={i}
-                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 transition-all duration-200 font-['Poppins']"
+                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 dark:from-[#06101E] dark:to-[#0A1728] dark:text-[#A8B5C7] dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:from-[#0A1728] dark:hover:to-[#06101E] dark:hover:text-[#22D3EE] transition-all duration-200 font-['Poppins']"
                     >
                       {techItem}
                     </span>
@@ -607,7 +607,7 @@ const Project = () => {
       <div className="flex justify-center mt-10 relative z-10">
         <button
           onClick={() => setViewAll(!viewAll)}
-          className="font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/50 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/60"
+          className="font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] text-white bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] shadow-lg shadow-cyan-500/50 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/60"
         >
           {viewAll ? 'Close' : 'View All'}
         </button>
