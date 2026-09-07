@@ -42,16 +42,7 @@ const allProjects = [
   type: 'web',
   link: '',
 },
-{
-  title: 'MAAP HERZIVANEANS CLASS OF 2028',
-  description:
-    'MAAP HERZIVANEANS CLASS OF 2028 is a school monitoring system built to help track and manage class-related activities in one centralized platform. The application provides a secure login experience for authorized users and supports monitoring workflows for school operations, making it easier for the class to stay organized and up to date. Built with React.js and Tailwind CSS for a clean, responsive interface, and powered by Express.js with MySQL for reliable backend functionality and data management.',
-  tech: ['React js', 'Tailwind css', 'Express js', 'MySQL'],
-  image: '/assets/images/maap.png',
-  type: 'web',
-  link: '',
-},
-  {
+ {
     title: 'Global Worth Trading Inc.',
     description:
       'Global Worth Trading Inc. is a corporate website for a B2B supplier of solar generators, inverters, and industrial power systems. The site features a modern hero section with solar and power imagery, clear navigation for Home, About, Products, and Contact, and prominent call-to-action buttons for exploring products and making inquiries. Built with React.js and Tailwind CSS for a fast, responsive frontend and Node.js for backend functionality, it presents a professional brand experience for smart energy solutions.',
@@ -87,6 +78,16 @@ const allProjects = [
     type: 'mobile',
     link: 'https://tourista-app.vercel.app/',
   },
+{
+  title: 'MAAP HERZIVANEANS CLASS OF 2028',
+  description:
+    'MAAP HERZIVANEANS CLASS OF 2028 is a school monitoring system built to help track and manage class-related activities in one centralized platform. The application provides a secure login experience for authorized users and supports monitoring workflows for school operations, making it easier for the class to stay organized and up to date. Built with React.js and Tailwind CSS for a clean, responsive interface, and powered by Express.js with MySQL for reliable backend functionality and data management.',
+  tech: ['React js', 'Tailwind css', 'Express js', 'MySQL'],
+  image: '/assets/images/maap.png',
+  type: 'web',
+  link: '',
+},
+ 
   {
     title: 'Aurum Platform Web',
     description:
