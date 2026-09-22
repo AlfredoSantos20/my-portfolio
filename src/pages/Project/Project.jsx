@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
@@ -6,6 +6,15 @@ import { FaArrowUpRightFromSquare, FaXmark } from 'react-icons/fa6';
 import '../../../public/assets/styles/global.css';
 
 const allProjects = [
+  {
+    title: 'Fast Cure Medical Supplies Inc.',
+    description:
+      'Fast Cure Medical Supplies Inc. is a corporate website for a medical supply company providing dependable products and healthcare solutions to hospitals, clinics, healthcare professionals, and organizations. The site features an animated hero section with a typewriter headline and floating info cards, a product catalog with quick-view modals for browsing medical supplies by category, dedicated services and about pages, and a contact form for quote requests. Built with TanStack Start and React for a fast, server-rendered frontend and Tailwind CSS for a clean, modern, and fully responsive design.',
+    tech: ['React js', 'Tanstack', 'Tailwind css'],
+    image: '/assets/images/fastcure.png',
+    type: 'web',
+    link: 'https://www.fastcuremedical.com/',
+  },
   {
     title: 'Empireone inc.',
     description:
@@ -277,21 +286,25 @@ const Project = () => {
   const [modalImage, setModalImage] = useState(null);
   const [mounted, setMounted] = useState(false);
   const [viewAll, setViewAll] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   // Function to get first sentence from description
+  const ABBREVIATIONS = /\b(Inc|Corp|Co|Ltd|LLC|Jr|Sr|Mr|Mrs|Ms|Dr|St|vs|etc|e\.g|i\.e|U\.S|U\.K)\.$/i;
   const getFirstSentence = (description) => {
-    // Find the first period followed by space, or end of string
-    const periodIndex = description.indexOf('. ');
-    if (periodIndex !== -1) {
-      // Return first sentence with period
-      return description.substring(0, periodIndex + 1).trim();
+    // Split into chunks at "period followed by whitespace" boundaries
+    const chunks = description.split(/(?<=\.)\s+/).filter(s => s.trim().length > 0);
+    let result = '';
+    for (const chunk of chunks) {
+      result = result ? `${result} ${chunk}` : chunk;
+      // Keep accumulating if the sentence so far ends in a known abbreviation
+      // (e.g. "Inc.") rather than a genuine sentence boundary.
+      if (!ABBREVIATIONS.test(result.trim())) break;
     }
-    // If no period found, return the whole description
-    return description.trim();
+    return result.trim();
   };
 
   // Function to check if description has more than one sentence
@@ -377,7 +390,7 @@ const Project = () => {
       : allProjects.filter((project) => project.type === filter);
 
   return (
-    <section className="py-16 px-6 bg-gradient-to-b from-blue-50 via-white to-blue-50 dark:from-[#030B18] dark:via-[#030B18] dark:to-[#030B18] bg-grid-light relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 px-6 bg-gradient-to-b from-blue-50 via-white to-blue-50 dark:from-[#030B18] dark:via-[#030B18] dark:to-[#030B18] bg-grid-light relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-200 dark:bg-[#06B6D4] rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-20 animate-blob"></div>
@@ -421,7 +434,7 @@ const Project = () => {
             <div
               key={idx}
               onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
-              className="keen-slider__slide bg-white dark:bg-[#06101E] rounded-2xl shadow-lg w-[320px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:bg-[#0A1728] overflow-hidden"
+              className="keen-slider__slide self-start bg-white dark:bg-[#06101E] rounded-2xl shadow-lg w-[320px] mx-auto sm:mx-0 flex-shrink-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:bg-[#0A1728] overflow-hidden flex flex-col"
             >
               {/* Gradient overlay on hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
@@ -439,77 +452,62 @@ const Project = () => {
                   }`}
                 />
                 
-                {/* Type badge */}
-                <span
-                  className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
-                  ${
-                    selectedCard === idx
-                      ? 'inline-flex max-sm:opacity-100'
-                      : 'hidden'
-                  } sm:inline-flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
-                >
-                  {project.type.toUpperCase()}
-                </span>
-                
-                {/* Link button */}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open project"
-                    onClick={(e) => e.stopPropagation()}
-                    className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
-                      ${
-                        selectedCard === idx
-                          ? 'inline-flex max-sm:opacity-100'
-                          : 'hidden'
-                      } sm:flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
-                  >
-                    <FaArrowUpRightFromSquare className="h-4 w-4" />
-                  </a>
-                )}
               </div>
 
-              <div className="p-4 relative z-10 bg-white dark:bg-[#06101E]">
-                <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-[#F8FAFC] group-hover:text-cyan-600 dark:group-hover:text-[#22D3EE] transition-colors duration-300 font-['Poppins']">
+              <div className="p-4 relative z-10 bg-white dark:bg-[#06101E] flex flex-1 flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="h-[2px] w-6 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6]"></span>
+                  <span className="text-[11px] font-bold tracking-wider uppercase text-cyan-600 dark:text-[#22D3EE] font-['Poppins']">
+                    {project.type === 'mobile' ? 'Mobile App' : 'Web Development'}
+                  </span>
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-[#F8FAFC] group-hover:text-cyan-600 dark:group-hover:text-[#22D3EE] transition-colors duration-300 font-['Poppins'] line-clamp-2 min-h-[3.5rem]">
                   {project.title}
                 </h3>
-                <div className="font-medium text-sm text-gray-600 dark:text-[#A8B5C7] mb-3 leading-relaxed font-['Poppins']">
+                <div className="font-medium text-sm text-gray-600 dark:text-[#A8B5C7] mb-3 leading-relaxed font-['Poppins'] min-h-[3rem]">
                   {(() => {
                     const isExpanded = expandedDescriptions.has(idx);
-                    const hasMore = hasMoreContent(project.description);
-                    const displayText = isExpanded 
-                      ? project.description 
+                    const displayText = isExpanded
+                      ? project.description
                       : getFirstSentence(project.description);
-                    
+
                     return (
-                      <>
-                        <p className={`mb-2 ${!isExpanded ? 'line-clamp-2' : ''}`}>
-                          {displayText}
-                        </p>
-                        {hasMore && (
-                          <button
-                            onClick={(e) => toggleDescription(idx, e)}
-                            className="mt-2 text-cyan-500 hover:text-cyan-600 dark:text-[#06B6D4] dark:hover:text-[#22D3EE] font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
-                          >
-                            {isExpanded ? 'View Less' : 'View More'}
-                            <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
-                          </button>
-                        )}
-                      </>
+                      <p className={`mb-2 ${!isExpanded ? 'line-clamp-2' : ''}`}>
+                        {displayText}
+                      </p>
                     );
                   })()}
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((techItem, i) => (
-                    <span
-                      key={i}
-                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 dark:from-[#06101E] dark:to-[#0A1728] dark:text-[#A8B5C7] dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:from-[#0A1728] dark:hover:to-[#06101E] dark:hover:text-[#22D3EE] transition-all duration-200 font-['Poppins']"
+                <div className="flex items-center justify-between mt-auto pt-3">
+                  {hasMoreContent(project.description) ? (
+                    <button
+                      onClick={(e) => toggleDescription(idx, e)}
+                      className="inline-flex items-center gap-2 rounded-full bg-cyan-50 dark:bg-[#0A1728] pl-4 pr-3 py-2 text-cyan-600 dark:text-[#22D3EE] font-semibold text-sm shadow-[0_0_14px_rgba(6,182,212,0.25)] hover:bg-cyan-100 dark:hover:bg-[#0d1f36] transition-all duration-200 font-['Poppins']"
                     >
-                      {techItem}
+                      {expandedDescriptions.has(idx) ? 'View Less' : 'View More'}
+                      <span className="h-4 w-px bg-cyan-300 dark:bg-[#183653]"></span>
+                      <span className={`text-[10px] transition-transform duration-200 ${expandedDescriptions.has(idx) ? 'rotate-180' : ''}`}>▼</span>
+                    </button>
+                  ) : <span />}
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      title="Open project"
+                      className="grid place-items-center h-11 w-11 rounded-full bg-white dark:bg-[#06101E] border-2 border-cyan-500/40 dark:border-[#06B6D4]/40 text-cyan-600 dark:text-[#22D3EE] shadow-[0_0_16px_rgba(6,182,212,0.3)] hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300"
+                    >
+                      <FaArrowUpRightFromSquare className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <span
+                      title="No live link available"
+                      className="grid place-items-center h-11 w-11 rounded-full bg-white dark:bg-[#06101E] border-2 border-gray-200 dark:border-[#183653] text-gray-300 dark:text-[#3B4C63] cursor-not-allowed"
+                    >
+                      <FaArrowUpRightFromSquare className="h-4 w-4" />
                     </span>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
@@ -523,7 +521,7 @@ const Project = () => {
             <div
               key={idx}
               onClick={() => setSelectedCard(prev => (prev === idx ? null : idx))}
-              className="bg-white dark:bg-[#06101E] rounded-2xl shadow-lg w-full max-w-[320px] mx-auto lg:max-w-none lg:mx-0 relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:bg-[#0A1728] overflow-hidden"
+              className="bg-white dark:bg-[#06101E] rounded-2xl shadow-lg w-full max-w-[320px] mx-auto lg:max-w-none lg:mx-0 self-start relative group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 ease-in-out cursor-pointer border border-gray-100 hover:border-cyan-200 dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:bg-[#0A1728] overflow-hidden flex flex-col"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500 z-0"></div>
               <div className="relative overflow-hidden h-40 rounded-t-2xl">
@@ -536,68 +534,56 @@ const Project = () => {
                     selectedCard === idx ? 'scale-110 brightness-110' : 'group-hover:scale-110 group-hover:brightness-105'
                   }`}
                 />
-                <span
-                  className={`absolute bottom-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 backdrop-blur-sm text-white text-xs font-bold px-4 py-1.5 rounded-full z-20 transition-all duration-300 shadow-lg shadow-cyan-500/30
-                  ${
-                    selectedCard === idx
-                      ? 'inline-flex max-sm:opacity-100'
-                      : 'hidden'
-                  } sm:inline-flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
-                >
-                  {project.type.toUpperCase()}
-                </span>
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title="Open project"
-                    onClick={(e) => e.stopPropagation()}
-                    className={`absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full p-2.5 z-20 transition-all duration-300 shadow-lg shadow-cyan-500/40 hover:scale-110 hover:shadow-xl hover:shadow-cyan-500/50
-                      ${
-                        selectedCard === idx
-                          ? 'inline-flex max-sm:opacity-100'
-                          : 'hidden'
-                      } sm:flex sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0`}
-                  >
-                    <FaArrowUpRightFromSquare className="h-4 w-4" />
-                  </a>
-                )}
               </div>
-              <div className="p-4 relative z-10 bg-white dark:bg-[#06101E]">
-                <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-[#F8FAFC] group-hover:text-cyan-600 dark:group-hover:text-[#22D3EE] transition-colors duration-300 font-['Poppins']">
+              <div className="p-4 relative z-10 bg-white dark:bg-[#06101E] flex flex-1 flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="h-[2px] w-6 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6]"></span>
+                  <span className="text-[11px] font-bold tracking-wider uppercase text-cyan-600 dark:text-[#22D3EE] font-['Poppins']">
+                    {project.type === 'mobile' ? 'Mobile App' : 'Web Development'}
+                  </span>
+                </div>
+                <h3 className="font-bold text-lg mb-2 text-gray-800 dark:text-[#F8FAFC] group-hover:text-cyan-600 dark:group-hover:text-[#22D3EE] transition-colors duration-300 font-['Poppins'] line-clamp-2 min-h-[3.5rem]">
                   {project.title}
                 </h3>
-                <div className="font-medium text-sm text-gray-600 dark:text-[#A8B5C7] mb-3 leading-relaxed font-['Poppins']">
+                <div className="font-medium text-sm text-gray-600 dark:text-[#A8B5C7] mb-3 leading-relaxed font-['Poppins'] min-h-[3rem]">
                   {(() => {
                     const isExpanded = expandedDescriptions.has(idx);
-                    const hasMore = hasMoreContent(project.description);
                     const displayText = isExpanded ? project.description : getFirstSentence(project.description);
                     return (
-                      <>
-                        <p className={`mb-2 ${!isExpanded ? 'line-clamp-2' : ''}`}>{displayText}</p>
-                        {hasMore && (
-                          <button
-                            onClick={(e) => toggleDescription(idx, e)}
-                            className="mt-2 text-cyan-500 hover:text-cyan-600 dark:text-[#06B6D4] dark:hover:text-[#22D3EE] font-semibold text-xs transition-all duration-200 hover:underline flex items-center gap-1 font-['Poppins']"
-                          >
-                            {isExpanded ? 'View Less' : 'View More'}
-                            <span className={`inline-block transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>▼</span>
-                          </button>
-                        )}
-                      </>
+                      <p className={`mb-2 ${!isExpanded ? 'line-clamp-2' : ''}`}>{displayText}</p>
                     );
                   })()}
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((techItem, i) => (
-                    <span
-                      key={i}
-                      className="bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-200 hover:border-cyan-300 hover:from-cyan-50 hover:to-blue-50 hover:text-cyan-700 dark:from-[#06101E] dark:to-[#0A1728] dark:text-[#A8B5C7] dark:border-[#183653] dark:hover:border-[#06B6D4] dark:hover:from-[#0A1728] dark:hover:to-[#06101E] dark:hover:text-[#22D3EE] transition-all duration-200 font-['Poppins']"
+                <div className="flex items-center justify-between mt-auto pt-3">
+                  {hasMoreContent(project.description) ? (
+                    <button
+                      onClick={(e) => toggleDescription(idx, e)}
+                      className="inline-flex items-center gap-2 rounded-full bg-cyan-50 dark:bg-[#0A1728] pl-4 pr-3 py-2 text-cyan-600 dark:text-[#22D3EE] font-semibold text-sm shadow-[0_0_14px_rgba(6,182,212,0.25)] hover:bg-cyan-100 dark:hover:bg-[#0d1f36] transition-all duration-200 font-['Poppins']"
                     >
-                      {techItem}
+                      {expandedDescriptions.has(idx) ? 'View Less' : 'View More'}
+                      <span className="h-4 w-px bg-cyan-300 dark:bg-[#183653]"></span>
+                      <span className={`text-[10px] transition-transform duration-200 ${expandedDescriptions.has(idx) ? 'rotate-180' : ''}`}>▼</span>
+                    </button>
+                  ) : <span />}
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      title="Open project"
+                      className="grid place-items-center h-11 w-11 rounded-full bg-white dark:bg-[#06101E] border-2 border-cyan-500/40 dark:border-[#06B6D4]/40 text-cyan-600 dark:text-[#22D3EE] shadow-[0_0_16px_rgba(6,182,212,0.3)] hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-all duration-300"
+                    >
+                      <FaArrowUpRightFromSquare className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <span
+                      title="No live link available"
+                      className="grid place-items-center h-11 w-11 rounded-full bg-white dark:bg-[#06101E] border-2 border-gray-200 dark:border-[#183653] text-gray-300 dark:text-[#3B4C63] cursor-not-allowed"
+                    >
+                      <FaArrowUpRightFromSquare className="h-4 w-4" />
                     </span>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
@@ -607,10 +593,15 @@ const Project = () => {
 
       <div className="flex justify-center mt-10 relative z-10">
         <button
-          onClick={() => setViewAll(!viewAll)}
+          onClick={() => {
+            if (viewAll) {
+              sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            setViewAll(!viewAll);
+          }}
           className="font-semibold px-6 py-2.5 rounded-full transition-all duration-300 ease-in-out cursor-pointer font-['Poppins'] text-white bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] shadow-lg shadow-cyan-500/50 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/60"
         >
-          {viewAll ? 'Close' : 'View All'}
+          {viewAll ? 'View Less' : 'View All'}
         </button>
       </div>
 
