@@ -127,7 +127,7 @@ const Navbar = () => {
               {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
             </button>
             <a
-              href={""}
+              href={"https://github.com/AlfredoSantos20"}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-cyan-500 dark:hover:text-[#22D3EE] cursor-pointer"
