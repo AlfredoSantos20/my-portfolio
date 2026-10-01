@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './Navbar/Navbar.jsx';
 import Project from './Project/Project.jsx';
 import Services from './Services/Services.jsx';
+import GithubContributions from './GithubContributions/GithubContributions.jsx';
 import Home from './Home/Home.jsx';
 import Contact from './Contact/Contact.jsx';
 import Footer from './Footer/Footer.jsx';
@@ -26,6 +27,13 @@ const Front = () => {
       <section id="projects" className="px-4 sm:px-6 md:px-10">
         <div data-aos="fade-up" className="max-w-7xl mx-auto">
           <Project selectedTab={selectedTab} />
+        </div>
+      </section>
+
+      {/* GitHub Contributions Section */}
+      <section id="github" className="px-4 sm:px-6 md:px-10">
+        <div data-aos="fade-up" className="max-w-7xl mx-auto">
+          <GithubContributions />
         </div>
       </section>
 
