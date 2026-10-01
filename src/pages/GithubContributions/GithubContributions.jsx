@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaCheck, FaChevronDown, FaGithub } from 'react-icons/fa';
 
 const GITHUB_USERNAME = 'AlfredoSantos20';
 
@@ -109,9 +109,36 @@ const GithubContributions = () => {
   const [allData, setAllData] = useState(null);
   const [error, setError] = useState(false);
   const [tooltip, setTooltip] = useState(null);
+  const [yearMenuOpen, setYearMenuOpen] = useState(false);
 
   const graphRef = useRef(null);
   const scrollRef = useRef(null);
+  const yearMenuRef = useRef(null);
+
+  // close the year dropdown on outside click / Escape
+  useEffect(() => {
+    if (!yearMenuOpen) return undefined;
+
+    const handlePointer = (event) => {
+      if (yearMenuRef.current && !yearMenuRef.current.contains(event.target)) {
+        setYearMenuOpen(false);
+      }
+    };
+
+    const handleKey = (event) => {
+      if (event.key === 'Escape') setYearMenuOpen(false);
+    };
+
+    document.addEventListener('mousedown', handlePointer);
+    document.addEventListener('touchstart', handlePointer);
+    document.addEventListener('keydown', handleKey);
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointer);
+      document.removeEventListener('touchstart', handlePointer);
+      document.removeEventListener('keydown', handleKey);
+    };
+  }, [yearMenuOpen]);
 
   const isMobile = useIsMobile();
   const { cell: CELL, gap: GAP } = isMobile ? SIZES.mobile : SIZES.desktop;
@@ -214,26 +241,31 @@ const GithubContributions = () => {
 
   const gridWidth = weeks.length * (CELL + GAP);
 
-  const yearButton = (value, label) => {
+  const yearOptions = [{ value: LAST_YEAR, label: 'Last year' }, ...years.map((year) => ({ value: year, label: year }))];
+  const selectedLabel = yearOptions.find((option) => option.value === selected)?.label ?? 'Last year';
+
+  const yearOption = ({ value, label }) => {
     const active = selected === value;
 
     return (
-      <button
-        key={value}
-        type="button"
-        onClick={() => {
-          setSelected(value);
-          setTooltip(null);
-        }}
-        aria-pressed={active}
-        className={`shrink-0 whitespace-nowrap rounded-lg px-2 py-2 text-center text-xs sm:px-4 sm:text-sm lg:text-left font-medium font-['Poppins'] transition-all duration-200 ${
-          active
-            ? 'bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] text-white shadow-md shadow-cyan-500/20'
-            : 'text-gray-500 dark:text-[#A8B5C7] hover:bg-gray-100 dark:hover:bg-[#0A1728] hover:text-gray-900 dark:hover:text-white'
-        }`}
-      >
-        {label}
-      </button>
+      <li key={value} role="option" aria-selected={active}>
+        <button
+          type="button"
+          onClick={() => {
+            setSelected(value);
+            setTooltip(null);
+            setYearMenuOpen(false);
+          }}
+          className={`flex w-full items-center justify-between gap-2 whitespace-nowrap rounded-md px-3 py-2 text-left text-xs sm:text-sm font-medium font-['Poppins'] transition-colors duration-150 ${
+            active
+              ? 'bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-[#06B6D4] dark:to-[#3B82F6] text-white'
+              : 'text-gray-600 dark:text-[#A8B5C7] hover:bg-gray-100 dark:hover:bg-[#0A1728] hover:text-gray-900 dark:hover:text-white'
+          }`}
+        >
+          {label}
+          {active && <FaCheck size={10} />}
+        </button>
+      </li>
     );
   };
 
@@ -415,17 +447,37 @@ const GithubContributions = () => {
             )}
           </div>
 
-          {/* YEAR FILTER — row on small screens, column on the right on large ones */}
+          {/* YEAR FILTER — dropdown, so the layout stays the same however many years there are */}
           {!error && (
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(58px,1fr))] gap-1.5 sm:flex sm:flex-wrap sm:gap-2 lg:w-32 lg:flex-col lg:flex-nowrap">
-              {isLoading
-                ? Array.from({ length: 4 }, (_, index) => (
-                    <span
-                      key={index}
-                      className="h-9 w-full sm:w-24 shrink-0 animate-pulse rounded-lg bg-gray-200 dark:bg-[#11203a] lg:w-full"
+            <div ref={yearMenuRef} className="relative z-20 w-full sm:w-40 sm:self-end lg:w-36 lg:self-start">
+              {isLoading ? (
+                <span className="block h-9 w-full animate-pulse rounded-lg bg-gray-200 dark:bg-[#11203a]" />
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setYearMenuOpen((open) => !open)}
+                    aria-haspopup="listbox"
+                    aria-expanded={yearMenuOpen}
+                    className="flex w-full items-center justify-between gap-2 rounded-lg border border-gray-200 dark:border-[#183653] bg-white dark:bg-[#030B18] px-3 py-2 text-xs sm:text-sm font-medium text-gray-700 dark:text-white font-['Poppins'] transition-colors duration-200 hover:border-cyan-400 dark:hover:border-[#06B6D4]"
+                  >
+                    {selectedLabel}
+                    <FaChevronDown
+                      size={10}
+                      className={`text-gray-400 dark:text-[#A8B5C7] transition-transform duration-200 ${yearMenuOpen ? 'rotate-180' : ''}`}
                     />
-                  ))
-                : [yearButton(LAST_YEAR, 'Last year'), ...years.map((year) => yearButton(year, year))]}
+                  </button>
+
+                  {yearMenuOpen && (
+                    <ul
+                      role="listbox"
+                      className="absolute right-0 mt-1.5 max-h-60 w-full overflow-y-auto rounded-lg border border-gray-200 dark:border-[#183653] bg-white dark:bg-[#030B18] p-1 shadow-lg shadow-gray-300/40 dark:shadow-black/40"
+                    >
+                      {yearOptions.map(yearOption)}
+                    </ul>
+                  )}
+                </>
+              )}
             </div>
           )}
         </div>

@@ -291,6 +291,8 @@ const Home = () => {
             status="Facebook"
             contactText="Contact Me"
             avatarUrl="/me2.jpg"
+            innerGradient="linear-gradient(160deg, #0b1f3acc 0%, #06B6D433 55%, #3B82F633 100%)"
+            behindGlowColor="rgba(6, 182, 212, 0.55)"
             showUserInfo={true}
             enableTilt={true}
             enableMobileTilt={false}
