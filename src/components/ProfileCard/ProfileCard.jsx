@@ -8,7 +8,8 @@ const ANIMATION_CONFIG = {
   INITIAL_X_OFFSET: 70,
   INITIAL_Y_OFFSET: 60,
   DEVICE_BETA_OFFSET: 20,
-  ENTER_TRANSITION_MS: 180
+  ENTER_TRANSITION_MS: 180,
+  RELEASE_TRANSITION_MS: 450
 };
 
 const clamp = (v, min = 0, max = 100) => Math.min(Math.max(v, min), max);
@@ -41,6 +42,7 @@ const ProfileCardComponent = ({
 
   const enterTimerRef = useRef(null);
   const leaveRafRef = useRef(null);
+  const releaseTimerRef = useRef(null);
 
   const tiltEngine = useMemo(() => {
     if (!enableTilt) return null;
@@ -80,8 +82,8 @@ const ProfileCardComponent = ({
         '--pointer-from-center': `${clamp(Math.hypot(percentY - 50, percentX - 50) / 50, 0, 1)}`,
         '--pointer-from-top': `${percentY / 100}`,
         '--pointer-from-left': `${percentX / 100}`,
-        '--rotate-x': `${round(-(centerX / 5))}deg`,
-        '--rotate-y': `${round(centerY / 4)}deg` 
+        '--rotate-x': `${round(-(centerX / 4))}deg`,
+        '--rotate-y': `${round(centerY / 3.5)}deg`
       };
 
       for (const [k, v] of Object.entries(properties)) wrap.style.setProperty(k, v);
@@ -240,9 +242,30 @@ const ProfileCardComponent = ({
     const pointerLeaveHandler = handlePointerLeave;
     const deviceOrientationHandler = handleDeviceOrientation;
 
+    // CLICK: press the card in, then spring back on release
+    const pressHandler = () => {
+      if (releaseTimerRef.current) window.clearTimeout(releaseTimerRef.current);
+      shell.classList.remove('releasing');
+      shell.classList.add('pressed');
+    };
+
+    const releaseHandler = () => {
+      if (!shell.classList.contains('pressed')) return;
+      shell.classList.remove('pressed');
+      shell.classList.add('releasing');
+      if (releaseTimerRef.current) window.clearTimeout(releaseTimerRef.current);
+      releaseTimerRef.current = window.setTimeout(() => {
+        shell.classList.remove('releasing');
+      }, ANIMATION_CONFIG.RELEASE_TRANSITION_MS);
+    };
+
     shell.addEventListener('pointerenter', pointerEnterHandler);
     shell.addEventListener('pointermove', pointerMoveHandler);
     shell.addEventListener('pointerleave', pointerLeaveHandler);
+    shell.addEventListener('pointerdown', pressHandler);
+    shell.addEventListener('pointerup', releaseHandler);
+    shell.addEventListener('pointerleave', releaseHandler);
+    shell.addEventListener('pointercancel', releaseHandler);
 
     const handleClick = () => {
       if (!enableMobileTilt || location.protocol !== 'https:') return;
@@ -272,12 +295,17 @@ const ProfileCardComponent = ({
       shell.removeEventListener('pointerenter', pointerEnterHandler);
       shell.removeEventListener('pointermove', pointerMoveHandler);
       shell.removeEventListener('pointerleave', pointerLeaveHandler);
+      shell.removeEventListener('pointerdown', pressHandler);
+      shell.removeEventListener('pointerup', releaseHandler);
+      shell.removeEventListener('pointerleave', releaseHandler);
+      shell.removeEventListener('pointercancel', releaseHandler);
       shell.removeEventListener('click', handleClick);
       window.removeEventListener('deviceorientation', deviceOrientationHandler);
       if (enterTimerRef.current) window.clearTimeout(enterTimerRef.current);
       if (leaveRafRef.current) cancelAnimationFrame(leaveRafRef.current);
+      if (releaseTimerRef.current) window.clearTimeout(releaseTimerRef.current);
       tiltEngine.cancel();
-      shell.classList.remove('entering');
+      shell.classList.remove('entering', 'pressed', 'releasing');
     };
   }, [
     enableTilt,
@@ -312,6 +340,7 @@ const ProfileCardComponent = ({
           <div className="pc-inside">
             <div className="pc-shine" />
             <div className="pc-glare" />
+            <div className="pc-light" />
             <div className="pc-content pc-avatar-content">
               <img
                 className="avatar"

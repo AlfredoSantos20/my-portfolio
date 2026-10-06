@@ -118,11 +118,53 @@
 .pc-card:hover,
 .pc-card.active {
   transition: none;
-  transform: translateZ(0) rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
+  /* 3D: tilt toward the cursor and lift off the page */
+  transform: translateZ(0) rotateX(var(--rotate-y)) rotateY(var(--rotate-x)) scale(1.03);
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.85),
+    calc((0.5 - var(--pointer-from-left)) * 40px) calc((0.5 - var(--pointer-from-top)) * 40px) 45px -12px
+      rgba(6, 182, 212, 0.4);
 }
 
 .pc-card-shell.entering .pc-card {
   transition: transform 180ms ease-out;
+}
+
+/* CLICK: card presses into the page, then springs back */
+.pc-card-shell.pressed .pc-card {
+  transition: transform 120ms ease-out;
+  transform: translateZ(0) rotateX(calc(var(--rotate-y) * 1.6)) rotateY(calc(var(--rotate-x) * 1.6)) scale(0.96);
+}
+
+.pc-card-shell.releasing .pc-card {
+  transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* moving light that follows the cursor */
+.pc-light {
+  z-index: 6;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(125, 211, 252, 0.08) 25%,
+    transparent 50%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.pc-card:hover .pc-light {
+  opacity: 1;
+}
+
+.pc-card-shell.pressed .pc-light {
+  opacity: 1;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.35) 0%,
+    rgba(6, 182, 212, 0.15) 30%,
+    transparent 60%
+  );
 }
 
 .pc-card-shell {
@@ -332,6 +374,12 @@
   border-radius: calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)));
   padding: 12px 14px;
   pointer-events: auto;
+  /* depth: the info bar floats slightly above the photo */
+  transform: translate3d(
+    calc((var(--pointer-from-left) - 0.5) * 10px),
+    calc((var(--pointer-from-top) - 0.5) * 8px),
+    0
+  );
 }
 
 .pc-user-details {
@@ -404,8 +452,8 @@
   text-align: center;
   position: relative;
   transform: translate3d(
-    calc(var(--pointer-from-left) * -6px + 3px),
-    calc(var(--pointer-from-top) * -6px + 3px),
+    calc(var(--pointer-from-left) * -16px + 8px),
+    calc(var(--pointer-from-top) * -12px + 6px),
     0.1px
   );
   z-index: 5;

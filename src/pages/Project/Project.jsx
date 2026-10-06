@@ -51,6 +51,15 @@ const allProjects = [
   type: 'web',
   link: '',
 },
+{
+  title: 'Mystimon',
+  description:
+    'Mystimon is the official landing page and frontend design system for an original monster-collecting browser game where players discover, collect, and trade mysterious creatures. The site opens with a cinematic hero featuring the explorer and companion Mystimon floating over an illustrated fantasy world, followed by an interactive world map with clickable region hotspots, a creature showcase with element-themed cards, region previews for Emerald Forest, Crystal Lake, Ember Valley, and Skyreach Mountains, a rarity collection from Common to Mythic, a visual trading preview with tradable items, and an in-game exploration preview with a game-style HUD. It also includes fully responsive sign-in and registration pages with client-side validation and a password strength meter. Built with React.js and TypeScript on Vite, styled with Tailwind CSS using centralized design tokens, animated with Framer Motion with reduced-motion support, and routed with React Router, it delivers a polished, game-like experience across desktop and mobile.',
+  tech: ['React js', 'TypeScript', 'Vite', 'Tailwind css', 'Framer Motion', 'React Router'],
+  image: '/assets/images/mystimon.png',
+  type: 'web',
+  link: 'https://mystimon-frontend.vercel.app/',
+},
  {
     title: 'Global Worth Trading Inc.',
     description:
